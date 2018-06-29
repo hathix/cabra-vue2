@@ -26,6 +26,13 @@
 </div>
 </template>
 
-<style scoped lang="scss">
-
+<style lang="scss">
+  // this makes the app content take up at least the entire window height, so that
+  // footers will be at the bottom of the window even if there's no content
+  // this also helps the floating action buttons (the big colorful circular ones)
+  // always appear at the bottom of the screen
+  // see https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+  .md-app-container {
+    min-height: 100vh;
+  }
 </style>
