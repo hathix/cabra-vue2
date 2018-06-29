@@ -23,7 +23,7 @@ export default {
     return {
       // whether or not we are currently on the app's home page
       home: true
-    }
+    };
   },
 
   // props: {
