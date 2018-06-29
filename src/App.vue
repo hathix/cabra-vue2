@@ -3,13 +3,6 @@
 
   <div class="page-container">
     <md-app>
-      <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <h3 class="md-title">Cabra</h3>
-      </md-app-toolbar>
-
       <md-app-content>
         <router-view/>
       </md-app-content>
@@ -34,5 +27,12 @@
 // see https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
 .md-app-container {
   min-height: 100vh;
+}
+.md-app-content {
+  // we have an embedded Wrapper component that actually holds everything, for technical reasons
+  // - idk why but you can't embed custom components in App, so we're having
+  // all routed stuff go through the Wrapper.
+  // anyway no padding here; it belongs in the wrapper content instead
+  padding: 0 !important;
 }
 </style>
