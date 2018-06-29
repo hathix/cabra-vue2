@@ -7,7 +7,7 @@ import store from "./store";
 // import Vue from 'vue'
 import VueMaterial from "vue-material";
 import "vue-material/dist/vue-material.min.css";
-import "vue-material/dist/theme/default-dark.css"; // Choose a theme https://vuematerial.io/themes/prebuilt
+import "vue-material/dist/theme/default.css"; // Choose a theme https://vuematerial.io/themes/prebuilt
 
 Vue.use(VueMaterial);
 // Vue.use(MdContent);

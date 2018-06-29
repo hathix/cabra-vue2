@@ -18,7 +18,7 @@
           <md-list-item to="/components/list">Link Router Active Color</md-list-item>
         </md-list>
 
-        <md-speed-dial class="md-bottom-right">
+        <md-speed-dial class="md-bottom-right" md-event="click">
           <md-speed-dial-target>
             <md-icon>add</md-icon>
           </md-speed-dial-target>
@@ -49,5 +49,8 @@
 </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
+.md-speed-dial {
+  z-index: 100;
+}
 </style>
