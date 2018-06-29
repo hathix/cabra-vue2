@@ -22,7 +22,7 @@ export default new Router({
           path: "/decks/:id",
           name: "deckpage",
           component: DeckPage,
-          props: true, // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+          props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
         },
         {
           path: "/about",

@@ -17,7 +17,7 @@ export default {
   // this is much better than using $route directly -- that would make the
   // component very fragile. see:
   // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
-  props: ['id'],
+  props: ["id"],
   computed: {
     deck() {
       // get deck from list of decks
