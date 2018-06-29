@@ -3,7 +3,7 @@
 <template>
   <div>
     <md-list>
-      <md-list-item v-for="deck in decks" :to="'decks/' + deck.id">
+      <md-list-item v-for="deck in decks" :to="'decks/' + deck.id" :key="deck.id">
         {{ deck.name }}
       </md-list-item>
       <!-- href="https://google.com" target="_blank">Link</md-list-item>
@@ -29,5 +29,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 </style>

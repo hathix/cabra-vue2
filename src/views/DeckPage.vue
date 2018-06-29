@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  // .md-speed-dial {
-  //   z-index: 100;
-  // }
+// .md-speed-dial {
+//   z-index: 100;
+// }
 </style>
