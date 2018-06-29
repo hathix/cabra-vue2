@@ -24,12 +24,27 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    // addDeck(deck) {
-    //   // state.decks.push(deck);
-    // }
+    // design decision (for now): never call a mutation externally. only call actions.
+    // "state" is a given parameter. think of it like "self" in python.
+    addDeck(state, deck) {
+      state.decks.push(deck);
+    }
   },
-  actions: {},
+  actions: {
+    // higher-level function to add a deck, called from the outside
+    addDeck({ commit /*, state */ }, deckName) {
+      // create a new deck out of this
+      let deck = {
+        name: deckName,
+        id: Date.now() + "", // some unique string
+        cards: [] // no cards yet
+      };
+      commit("addDeck", deck);
+    }
+  },
+
   plugins: [
+    // to store in localstorage
     createPersistedState({
       key: "cabra"
     })

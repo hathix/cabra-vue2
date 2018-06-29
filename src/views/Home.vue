@@ -6,7 +6,7 @@
 
     <!-- TODO factor out into DeckAddButton or something -->
     <md-speed-dial class="md-bottom-right" md-event="click">
-      <md-speed-dial-target>
+      <md-speed-dial-target  @click="addDeck()">
         <md-icon>add</md-icon>
       </md-speed-dial-target>
 
@@ -33,6 +33,13 @@ export default {
   components: {
     HelloWorld,
     DeckList
+  },
+  methods: {
+    addDeck() {
+      console.log("adding a deck");
+      // for now, just add a random deck to test
+      this.$store.dispatch("addDeck", "New Deck");
+    }
   }
 };
 </script>
