@@ -3,11 +3,14 @@
 
   <div class="page-container">
     <md-app>
-      <TopBar />
+      <md-app-toolbar class="md-primary">
+        <md-button class="md-icon-button">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h3 class="md-title">Cabra</h3>
+      </md-app-toolbar>
 
       <md-app-content>
-
-        <HelloWorld msg="hi" />
         <router-view/>
       </md-app-content>
     </md-app>
@@ -22,17 +25,6 @@
     </md-app> -->
 </div>
 </template>
-
-<script>
-import TopBar from "@/components/TopBar.vue";
-
-export default {
-  name: "app",
-  components: {
-    TopBar
-  }
-};
-</script>
 
 <style lang="scss">
 // this makes the app content take up at least the entire window height, so that
