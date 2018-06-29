@@ -11,32 +11,7 @@
       </md-app-toolbar>
 
       <md-app-content>
-
-        <md-list>
-          <md-list-item href="https://google.com" target="_blank">Link</md-list-item>
-          <md-list-item to="/components/list/router">Link Router</md-list-item>
-          <md-list-item to="/components/list">Link Router Active Color</md-list-item>
-        </md-list>
-
-        <md-speed-dial class="md-bottom-right" md-event="click">
-          <md-speed-dial-target>
-            <md-icon>add</md-icon>
-          </md-speed-dial-target>
-
-          <!-- <md-speed-dial-content>
-            <md-button class="md-icon-button">
-              <md-icon>note</md-icon>
-            </md-button>
-
-            <md-button class="md-icon-button">
-              <md-icon>event</md-icon>
-            </md-button>
-          </md-speed-dial-content> -->
-        </md-speed-dial>
-
-
         <router-view/>
-
       </md-app-content>
     </md-app>
   </div>
@@ -52,7 +27,5 @@
 </template>
 
 <style scoped lang="scss">
-.md-speed-dial {
-  z-index: 100;
-}
+
 </style>
