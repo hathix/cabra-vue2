@@ -2,7 +2,14 @@
 
 <template>
   <div>
-    Decks: "{{ decks }}"
+    <md-list>
+      <md-list-item v-for="deck in decks" to="/asdf">
+        {{ deck.name }}
+      </md-list-item>
+      <!-- href="https://google.com" target="_blank">Link</md-list-item>
+      <md-list-item to="/components/list/router">Link Router</md-list-item>
+      <md-list-item to="/components/list">Link Router Active Color</md-list-item> -->
+    </md-list>
 
     <md-button class="md-raised md-accent">
       This is a Material button
@@ -18,7 +25,7 @@ export default {
   // },
   computed: {
     decks() {
-      return this.$store.decks;
+      return this.$store.state.decks;
     }
   }
 };
