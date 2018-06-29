@@ -4,14 +4,37 @@
   <div class="page-container">
     <md-app>
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+        <md-button class="md-icon-button">
           <md-icon>menu</md-icon>
         </md-button>
         <h3 class="md-title">Cabra</h3>
       </md-app-toolbar>
 
       <md-app-content>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.</p>
+
+        <md-list>
+          <md-list-item href="https://google.com" target="_blank">Link</md-list-item>
+          <md-list-item to="/components/list/router">Link Router</md-list-item>
+          <md-list-item to="/components/list">Link Router Active Color</md-list-item>
+        </md-list>
+
+        <md-speed-dial class="md-bottom-right">
+          <md-speed-dial-target>
+            <md-icon>add</md-icon>
+          </md-speed-dial-target>
+
+          <md-speed-dial-content>
+            <md-button class="md-icon-button">
+              <md-icon>note</md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button">
+              <md-icon>event</md-icon>
+            </md-button>
+          </md-speed-dial-content>
+        </md-speed-dial>
+
+
       </md-app-content>
     </md-app>
   </div>
@@ -27,21 +50,4 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
