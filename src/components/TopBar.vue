@@ -2,8 +2,8 @@
 
 <template>
   <md-app-toolbar class="md-primary">
-    <md-button class="md-icon-button">
-      <md-icon>menu</md-icon>
+    <md-button class="md-icon-button" @click="goBack()">
+      <md-icon>arrow_back</md-icon>
     </md-button>
     <h3 class="md-title">Cabra</h3>
   </md-app-toolbar>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "topbar"
+  name: "topbar",
   // props: {
   //   msg: String
   // },
@@ -20,6 +20,17 @@ export default {
   //     return this.$store.state.decks;
   //   }
   // }
+
+  // trying custom functions,
+  methods: {
+    goBack() {
+      console.log("BACKING UP!");
+      // note that this is $routER, not $routE.
+      // $.route gives the current page's URL and stuff,
+      // $.router gives global functions.
+      this.$router.go(-1);
+    }
+  }
 };
 </script>
 

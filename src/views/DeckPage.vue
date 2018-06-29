@@ -13,10 +13,16 @@ import _ from "lodash";
 
 export default {
   name: "deckpage",
+  // the router will pass the deck's ID, which is extracted from the URL.
+  // this is much better than using $route directly -- that would make the
+  // component very fragile. see:
+  // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+  props: ['id'],
   computed: {
     deck() {
       // get deck from list of decks
-      let deckId = this.$route.params.id;
+
+      let deckId = this.id;
       // TODO search in list of decks for this
       let allDecks = this.$store.state.decks;
       // find first deck that matches
