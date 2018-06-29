@@ -9,6 +9,7 @@ export default new Vuex.Store({
     decks: [
       {
         name: "Deck1",
+        id: "12345",
         cards: [
           {
             question: "What is 2+2?",

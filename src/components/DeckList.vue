@@ -3,7 +3,7 @@
 <template>
   <div>
     <md-list>
-      <md-list-item v-for="deck in decks" to="/asdf">
+      <md-list-item v-for="deck in decks" :to="'decks/' + deck.id">
         {{ deck.name }}
       </md-list-item>
       <!-- href="https://google.com" target="_blank">Link</md-list-item>
