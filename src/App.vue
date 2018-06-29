@@ -23,7 +23,7 @@
             <md-icon>add</md-icon>
           </md-speed-dial-target>
 
-          <md-speed-dial-content>
+          <!-- <md-speed-dial-content>
             <md-button class="md-icon-button">
               <md-icon>note</md-icon>
             </md-button>
@@ -31,7 +31,7 @@
             <md-button class="md-icon-button">
               <md-icon>event</md-icon>
             </md-button>
-          </md-speed-dial-content>
+          </md-speed-dial-content> -->
         </md-speed-dial>
 
 
