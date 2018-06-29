@@ -2,6 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
+    {{ decks }}
+
     <md-button class="md-raised md-accent">
       This is a Material button
     </md-button>
@@ -25,6 +27,11 @@ export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  computed: {
+    decks() {
+      return this.$store.decks;
+    }
   }
 };
 </script>

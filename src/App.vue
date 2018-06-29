@@ -35,6 +35,8 @@
         </md-speed-dial>
 
 
+        <router-view/>
+
       </md-app-content>
     </md-app>
   </div>

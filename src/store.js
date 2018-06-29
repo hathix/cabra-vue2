@@ -23,12 +23,14 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    addDeck (deck) {
-      state.decks.push(deck)
-    }
+    // addDeck(deck) {
+    //   // state.decks.push(deck);
+    // }
   },
   actions: {},
-  plugins: [createPersistedState({
-    key: "cabra"
-  })]
+  plugins: [
+    createPersistedState({
+      key: "cabra"
+    })
+  ]
 });
