@@ -1,6 +1,7 @@
 <template>
   <div>
     My id is {{ $route.params.id }}. My name is {{ deck.name }}.
+    <md-button @click="addCard()">Add card</md-button>
   </div>
 </template>
 
@@ -27,6 +28,11 @@ export default {
       let allDecks = this.$store.state.decks;
       // find first deck that matches
       return _.find(allDecks, { id: deckId });
+    }
+  },
+  methods: {
+    addCard() {
+      this.$store.dispatch("addCardToDeck", { deckId: this.id, card: { question: "3+5", answer: "8" } });
     }
   }
   // components: {
