@@ -1,7 +1,18 @@
 <template>
   <div>
+    <p>
     My id is {{ $route.params.id }}. My name is {{ deck.name }}.
     <md-button @click="addCard()">Add card</md-button>
+  </p>
+    <p>
+    My cards:
+  </p>
+
+    <ul>
+      <li v-for="card in deck.cards">
+        {{ card.question }} / {{ card.answer }}
+      </li>
+    </ul>
   </div>
 </template>
 
