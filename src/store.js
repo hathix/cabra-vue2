@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import _ from "lodash";
+// import factory from "@/lib/factory";
 
 Vue.use(Vuex);
 
@@ -14,11 +15,13 @@ export default new Vuex.Store({
         cards: [
           {
             question: "What is 2+2?",
-            answer: "4"
+            answer: "4",
+            id: "a"
           },
           {
             question: "What color is the sky?",
-            answer: "Blue"
+            answer: "Blue",
+            id: "b"
           }
         ]
       }
@@ -38,13 +41,7 @@ export default new Vuex.Store({
   },
   actions: {
     // higher-level function to add a deck, called from the outside
-    addDeck({ commit /*, state */ }, deckName) {
-      // create a new deck out of this
-      let deck = {
-        name: deckName,
-        id: Date.now() + "", // some unique string
-        cards: [] // no cards yet
-      };
+    addDeck({ commit /*, state */ }, deck) {
       commit("addDeck", deck);
     },
 

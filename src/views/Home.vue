@@ -27,6 +27,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import DeckList from "@/components/DeckList.vue";
+import factory from "@/lib/factory.js";
 
 export default {
   name: "home",
@@ -38,7 +39,8 @@ export default {
     addDeck() {
       console.log("adding a deck");
       // for now, just add a random deck to test
-      this.$store.dispatch("addDeck", "New Deck");
+      let deck = factory.createDeck({ name: "New Deck" });
+      this.$store.dispatch("addDeck", deck);
     }
   }
 };

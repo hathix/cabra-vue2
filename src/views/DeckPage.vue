@@ -9,7 +9,7 @@
   </p>
 
     <ul>
-      <li v-for="card in deck.cards">
+      <li v-for="card in deck.cards" :key="card.id">
         {{ card.question }} / {{ card.answer }}
       </li>
     </ul>
@@ -24,6 +24,7 @@
 // TODO give cards unique IDs
 
 import _ from "lodash";
+import factory from "@/lib/factory";
 
 export default {
   name: "deckpage",
@@ -45,9 +46,10 @@ export default {
   },
   methods: {
     addCard() {
+      // TODO: abstract out card creation
       this.$store.dispatch("addCardToDeck", {
         deckId: this.id,
-        card: { question: "3+5", answer: "8" }
+        card: factory.createCard({ question: "3+5", answer: "8" })
       });
     }
   }
