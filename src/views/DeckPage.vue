@@ -21,6 +21,8 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 // import DeckList from "@/components/DeckList.vue";
 
+// TODO give cards unique IDs
+
 import _ from "lodash";
 
 export default {
@@ -43,7 +45,10 @@ export default {
   },
   methods: {
     addCard() {
-      this.$store.dispatch("addCardToDeck", { deckId: this.id, card: { question: "3+5", answer: "8" } });
+      this.$store.dispatch("addCardToDeck", {
+        deckId: this.id,
+        card: { question: "3+5", answer: "8" }
+      });
     }
   }
   // components: {

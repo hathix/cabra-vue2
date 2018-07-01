@@ -48,7 +48,7 @@ export default new Vuex.Store({
       commit("addDeck", deck);
     },
 
-    addCardToDeck({ commit, state }, {deckId, card }) {
+    addCardToDeck({ commit, state }, { deckId, card }) {
       // TODO standardize how much pre-structuring we want to have
       // for instance above we want the deck name, here we want a fully-formed
       // card. i would rather take more-structured stuff to make it more flexible.
