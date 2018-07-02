@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import About from "./views/About.vue";
 import DeckPage from "./views/DeckPage.vue";
 import Wrapper from "./views/Wrapper.vue";
+import AddDeck from "@/views/AddDeck.vue";
 
 Vue.use(Router);
 
@@ -28,7 +29,12 @@ export default new Router({
           path: "/about",
           name: "about",
           component: About
-        }
+        },
+        {
+          path: "/add",
+          name: "adddeck",
+          component: AddDeck
+        },
       ]
     }
   ]
