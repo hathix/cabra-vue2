@@ -34,7 +34,7 @@ export default new Router({
           path: "/add",
           name: "adddeck",
           component: AddDeck
-        },
+        }
       ]
     }
   ]

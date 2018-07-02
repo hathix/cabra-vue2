@@ -6,7 +6,7 @@
 
     <!-- TODO factor out into DeckAddButton or something -->
     <md-speed-dial class="md-bottom-right" md-event="click">
-      <md-speed-dial-target  @click="addDeck()">
+      <md-speed-dial-target  to="/add">
         <md-icon>add</md-icon>
       </md-speed-dial-target>
 
@@ -27,7 +27,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import DeckList from "@/components/DeckList.vue";
-import factory from "@/lib/factory.js";
+// import factory from "@/lib/factory.js";
 
 export default {
   name: "home",
@@ -36,12 +36,12 @@ export default {
     DeckList
   },
   methods: {
-    addDeck() {
-      console.log("adding a deck");
-      // for now, just add a random deck to test
-      let deck = factory.createDeck({ name: "New Deck" });
-      this.$store.dispatch("addDeck", deck);
-    }
+    // addDeck() {
+    //   console.log("adding a deck");
+    //   // for now, just add a random deck to test
+    //   let deck = factory.createDeck({ name: "New Deck" });
+    //   this.$store.dispatch("addDeck", deck);
+    // }
   }
 };
 </script>
