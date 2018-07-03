@@ -79,20 +79,20 @@ export default {
   // },
   methods: {
     addDeckFromScratch() {
-        console.log("adding a deck called", this.deckName);
-        // for now, just add a random deck to test
-        let deck = factory.createDeck({ name: this.deckName });
-        this.$store.dispatch("addDeck", deck);
+      console.log("adding a deck called", this.deckName);
+      // for now, just add a random deck to test
+      let deck = factory.createDeck({ name: this.deckName });
+      this.$store.dispatch("addDeck", deck);
 
-        // go back home
-        // TODO make an enum for route names instead of hardcoding
-        this.$router.push({ name: 'home' });
+      // go back home
+      // TODO make an enum for route names instead of hardcoding
+      this.$router.push({ name: "home" });
 
-        // reset form
-        this.deckName = null;
+      // reset form
+      this.deckName = null;
     },
     quizletSearch() {
-      // search for a particular term 
+      // search for a particular term
     }
   }
   // components: {

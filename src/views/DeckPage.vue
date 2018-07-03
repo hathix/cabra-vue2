@@ -59,9 +59,7 @@ export default {
     }
   },
 
-  mixins: [
-    Page
-  ]
+  mixins: [Page]
   // components: {
   //   HelloWorld,
   //   DeckList

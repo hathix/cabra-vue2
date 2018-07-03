@@ -7,9 +7,8 @@
   - define a computed or static property called `pageName`
 */
 export default {
-
   mounted: function() {
     let pageName = this.pageName || "Cabra"; // default
-    this.$emit('update-page-name', pageName);
+    this.$emit("update-page-name", pageName);
   }
-}
+};

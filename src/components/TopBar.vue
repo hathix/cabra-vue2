@@ -52,9 +52,7 @@ export default {
 
   // pass me whatever I should put in the top bar's title
   // (the big text at the top of the app)
-  props: [
-    "title"
-  ],
+  props: ["title"],
 
   data: function() {
     return {

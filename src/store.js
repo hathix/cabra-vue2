@@ -31,7 +31,7 @@ export default new Vuex.Store({
     // design decision (for now): never call a mutation externally. only call actions.
     // "state" is a given parameter. think of it like "self" in python.
     addDeck(state, deck) {
-      if (!(state.decks)) {
+      if (!state.decks) {
         state.decks = [];
       }
       state.decks.push(deck);
@@ -67,9 +67,9 @@ export default new Vuex.Store({
     },
 
     clearAllData({ commit }) {
-      console.log('clearing all data');
+      console.log("clearing all data");
       commit("clearAllData");
-    },
+    }
   },
 
   plugins: [
