@@ -2,37 +2,44 @@
 <div>
   <md-tabs md-alignment="centered">
     <!-- <md-tab id="tab-home" md-icon="home"></md-tab> -->
-    <md-tab id="tab-pages" md-label="Create New" md-icon="create"></md-tab>
-    <md-tab id="tab-posts" md-label="Quizlet Import" md-icon="cloud_download"></md-tab>
+    <md-tab id="tab-pages" md-label="Create New" md-icon="create">
+
+      <form novalidate class="md-layout" @submit="addDeckFromScratch">
+
+        <md-card class="md-layout-item md-size-100 md-small-size-100">
+          <md-card-header>
+            <div class="md-title">Create deck from scratch</div>
+          </md-card-header>
+
+          <md-card-content>
+            <div class="md-layout md-gutter">
+              <div class="md-layout-item md-small-size-100">
+
+                <md-field>
+                  <label>Deck name</label>
+                  <md-input v-model="deckName"></md-input>
+                  <!-- <span class="md-helper-text">Helper text</span> -->
+                </md-field>
+              </div>
+            </div>
+          </md-card-content>
+
+          <md-card-actions>
+            <md-button type="submit" class="md-primary">Create deck</md-button>
+          </md-card-actions>
+        </md-card>
+
+      </form>
+    </md-tab>
+    <md-tab id="tab-posts" md-label="Quizlet Import" md-icon="cloud_download">
+      <md-field>
+        <label>Search for a set on Quizlet</label>
+        <md-input v-model="quizletSearchTerm"></md-input>
+        <!-- <span class="md-helper-text">Helper text</span> -->
+      </md-field>
+    </md-tab>
     <!-- <md-tab id="tab-favorites" md-icon="favorite"></md-tab> -->
   </md-tabs>
-
-  <form novalidate class="md-layout" @submit="addDeckFromScratch">
-
-    <md-card class="md-layout-item md-size-100 md-small-size-100">
-      <md-card-header>
-        <div class="md-title">Create deck from scratch</div>
-      </md-card-header>
-
-      <md-card-content>
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-small-size-100">
-
-            <md-field>
-              <label>Deck name</label>
-              <md-input v-model="deckName"></md-input>
-              <!-- <span class="md-helper-text">Helper text</span> -->
-            </md-field>
-          </div>
-        </div>
-      </md-card-content>
-
-      <md-card-actions>
-        <md-button type="submit" class="md-primary">Create deck</md-button>
-      </md-card-actions>
-    </md-card>
-
-  </form>
 </div>
 </template>
 
@@ -49,7 +56,8 @@ export default {
 
   data: function() {
     return {
-      deckName: null
+      deckName: null,
+      quizletSearchTerm: null
     };
   },
 
