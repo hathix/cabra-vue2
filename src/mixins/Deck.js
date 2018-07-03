@@ -22,5 +22,17 @@ export default {
         id: deckId
       });
     }
+  },
+
+  methods: {
+    getCardById(cardId) {
+      let allCards = this.deck.cards;
+      // find first card that matches
+      let card = _.find(allCards, {
+        id: cardId
+      });
+
+      return card;
+    }
   }
 };

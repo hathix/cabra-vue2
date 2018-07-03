@@ -57,6 +57,13 @@ export default new Vuex.Store({
       // deck.cards.push(card);
     },
 
+    deleteCard(state, { deck, card }) {
+        deck.cards = _.filter(deck.cards, elem => {
+          // only keep stuff whose id != card's id
+          return elem.id !== card.id;
+        });
+    },
+
     clearAllData(state) {
       state.decks = [];
     }
@@ -72,8 +79,12 @@ export default new Vuex.Store({
       commit("addCardToDeck", { deck: deck, card: card });
     },
 
-    updateCard({ commit, state }, { deck, card }) {
+    updateCard({ commit }, { deck, card }) {
       commit("updateCard", { deck: deck, card: card });
+    },
+
+    deleteCard({ commit }, { deck, card }) {
+      commit("deleteCard", { deck: deck, card: card });
     },
 
     clearAllData({ commit }) {

@@ -76,11 +76,20 @@ export default {
   //   }
   // },
   methods: {
-    editCard(cardId) {
-      console.log("EDITING", cardId);
-    },
+    // editCard(cardId) {
+    //   console.log("EDITING", cardId);
+    // },
     deleteCard(cardId) {
-      console.log("DELETING", cardId);
+      // TODO require confirmation
+
+      // figure out which card we mean
+      let card = this.getCardById(cardId);
+      console.log("DELETING", card);
+
+      this.$store.dispatch("deleteCard", {
+        deck: this.deck,
+        card: card
+      });
     }
     // addDeckFromScratch() {
     //   console.log("adding a deck called", this.deckName);
