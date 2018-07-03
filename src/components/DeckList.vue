@@ -15,6 +15,8 @@
       @md-confirm="renameDeck"
        />
 
+       <!-- you can't make clickable cards so these won't work for navigation -->
+<!--
     <md-card md-with-hover v-for="deck in decks" :to="'decks/' + deck.id" :key="deck.id">
       <md-card-header>
         <div class="md-title">{{ deck.name }}</div>
@@ -25,7 +27,7 @@
       </md-card-content>
 
       <md-card-actions>
-        <!-- TODO make this actually rename the deck -->
+
         <md-button class="md-icon-button" @click="openDeckRenamer(deck)">
           <md-icon>create</md-icon>
         </md-button>
@@ -33,13 +35,22 @@
           <md-icon>delete</md-icon>
         </md-button>
       </md-card-actions>
-    </md-card>
+    </md-card> -->
 
-    <!-- <md-list>
+
+    <md-list>
       <md-list-item v-for="deck in decks" :to="'decks/' + deck.id" :key="deck.id">
-        {{ deck.name }}
+        <span class="md-list-item-text">
+          {{ deck.name }}
+        </span>
+
+        <!-- you can't add clickable buttons to clickable lists. i think the move is
+        to just enable deck renaming/deletion in the deck page -->
+        <!-- <md-button class="md-icon-button md-list-action" @click="openDeckRenamer(deck)">
+          <md-icon>chat_bubble</md-icon>
+        </md-button> -->
       </md-list-item>
-    </md-list> -->
+    </md-list>
   </div>
 </template>
 
