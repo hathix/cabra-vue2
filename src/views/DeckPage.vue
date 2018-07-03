@@ -2,16 +2,8 @@
   <div>
     <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
+    <router-link to="cards" tag="md-button" append>View cards</router-link>
   </p>
-    <p>
-    My cards:
-  </p>
-
-    <ul>
-      <li v-for="card in deck.cards" :key="card.id">
-        {{ card.question }} / {{ card.answer }}
-      </li>
-    </ul>
   </div>
 </template>
 
