@@ -17,6 +17,13 @@
       <span v-else>Create card</span>
     </md-button>
   </form>
+
+  <!-- TODO alter the snackbar if they edited a card instead of creating one.
+  but if we automatically go back after editing, the snackbar will be hidden -->
+  <md-snackbar :md-position="center" :md-duration="snackbarDuration" :md-active.sync="showSnackbar" md-persistent>
+    <span>Card successfully created!</span>
+    <md-button class="md-primary" @click="showSnackbar = false">Close</md-button>
+  </md-snackbar>
 </div>
 </template>
 
@@ -42,7 +49,10 @@ export default {
   data: function() {
     return {
       card: null,
-      editing: this.cardId ? true : false // true if a cardId was passed
+      editing: this.cardId ? true : false, // true if a cardId was passed
+
+      showSnackbar: false,
+      snackbarDuration: 3000, // milliseconds
     };
   },
 
@@ -97,6 +107,9 @@ export default {
 
         // now wipe the slate clean (and in doing so reset the form )
         this.createBlankCard();
+
+        // show success message
+        this.showSnackbar = true;
       }
     }
   }
