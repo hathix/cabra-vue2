@@ -90,6 +90,9 @@ export default {
 
         // reset form
         this.deckName = null;
+    },
+    quizletSearch() {
+      // search for a particular term 
     }
   }
   // components: {

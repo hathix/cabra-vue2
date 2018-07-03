@@ -1,9 +1,10 @@
 <!-- Top navbar -->
 
 <template>
+  <div>
   <md-app-toolbar class="md-primary">
     <!-- if we're on the homepage, show the menu button -->
-    <md-button class="md-icon-button" v-if="home">
+    <md-button class="md-icon-button" v-if="home" @click="showSidebar = true">
       <md-icon>menu</md-icon>
     </md-button>
     <!-- else show the back button -->
@@ -13,6 +14,36 @@
 
     <h3 class="md-title">Cabra</h3>
   </md-app-toolbar>
+
+  <!-- TODO consider moving this out into another component -->
+  <md-drawer :md-active.sync="showSidebar">
+    <md-toolbar class="md-transparent" md-elevation="0">
+      <span class="md-title">Cabra</span>
+    </md-toolbar>
+
+    <md-list>
+      <md-list-item>
+        <md-icon>move_to_inbox</md-icon>
+        <span class="md-list-item-text">Inbox</span>
+      </md-list-item>
+
+      <md-list-item>
+        <md-icon>send</md-icon>
+        <span class="md-list-item-text">Sent Mail</span>
+      </md-list-item>
+
+      <md-list-item>
+        <md-icon>delete</md-icon>
+        <span class="md-list-item-text">Trash</span>
+      </md-list-item>
+
+      <md-list-item>
+        <md-icon>error</md-icon>
+        <span class="md-list-item-text">Spam</span>
+      </md-list-item>
+    </md-list>
+  </md-drawer>
+</div>
 </template>
 
 <script>
@@ -22,7 +53,9 @@ export default {
   data: function() {
     return {
       // whether or not we are currently on the app's home page
-      home: true
+      home: true,
+      // whether or not we should show the sidebar
+      showSidebar: false
     };
   },
 
