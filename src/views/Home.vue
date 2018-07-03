@@ -39,7 +39,7 @@ export default {
   data: function() {
     return {
       pageName: "Cabra" // used by the Page mixin to update the title bar and other stuff
-    }
+    };
   },
   methods: {
     // addDeck() {
