@@ -1,8 +1,7 @@
 <template>
   <div>
     <p>
-    My id is {{ $route.params.id }}. My name is {{ deck.name }}.
-    <md-button @click="addCard()">Add card</md-button>
+    <router-link tag="md-button" to="add" append>Add card</router-link>
   </p>
     <p>
     My cards:

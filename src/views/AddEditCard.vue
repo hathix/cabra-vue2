@@ -1,46 +1,46 @@
 <template>
-<div>
-  <md-tabs md-alignment="centered">
-    <!-- <md-tab id="tab-home" md-icon="home"></md-tab> -->
-    <md-tab id="tab-pages" md-label="Create New" md-icon="create">
+  <div>
+    <md-tabs md-alignment="centered">
+      <!-- <md-tab id="tab-home" md-icon="home"></md-tab> -->
+      <md-tab id="tab-pages" md-label="Create New" md-icon="create">
 
-      <form novalidate class="md-layout" @submit="addDeckFromScratch">
+        <form novalidate class="md-layout" @submit="addDeckFromScratch">
 
-        <md-card class="md-layout-item md-size-100 md-small-size-100">
-          <md-card-header>
-            <div class="md-title">Create deck from scratch</div>
-          </md-card-header>
+          <md-card class="md-layout-item md-size-100 md-small-size-100">
+            <md-card-header>
+              <div class="md-title">Create deck from scratch</div>
+            </md-card-header>
 
-          <md-card-content>
-            <div class="md-layout md-gutter">
-              <div class="md-layout-item md-small-size-100">
+            <md-card-content>
+              <div class="md-layout md-gutter">
+                <div class="md-layout-item md-small-size-100">
 
-                <md-field>
-                  <label>Deck name</label>
-                  <md-input v-model="deckName"></md-input>
-                  <!-- <span class="md-helper-text">Helper text</span> -->
-                </md-field>
+                  <md-field>
+                    <label>Deck name</label>
+                    <md-input v-model="deckName"></md-input>
+                    <!-- <span class="md-helper-text">Helper text</span> -->
+                  </md-field>
+                </div>
               </div>
-            </div>
-          </md-card-content>
+            </md-card-content>
 
-          <md-card-actions>
-            <md-button type="submit" class="md-primary">Create deck</md-button>
-          </md-card-actions>
-        </md-card>
+            <md-card-actions>
+              <md-button type="submit" class="md-primary">Create deck</md-button>
+            </md-card-actions>
+          </md-card>
 
-      </form>
-    </md-tab>
-    <md-tab id="tab-posts" md-label="Quizlet Import" md-icon="cloud_download">
-      <md-field>
-        <label>Search for a set on Quizlet</label>
-        <md-input v-model="quizletSearchTerm"></md-input>
-        <!-- <span class="md-helper-text">Helper text</span> -->
-      </md-field>
-    </md-tab>
-    <!-- <md-tab id="tab-favorites" md-icon="favorite"></md-tab> -->
-  </md-tabs>
-</div>
+        </form>
+      </md-tab>
+      <md-tab id="tab-posts" md-label="Quizlet Import" md-icon="cloud_download">
+        <md-field>
+          <label>Search for a set on Quizlet</label>
+          <md-input v-model="quizletSearchTerm"></md-input>
+          <!-- <span class="md-helper-text">Helper text</span> -->
+        </md-field>
+      </md-tab>
+      <!-- <md-tab id="tab-favorites" md-icon="favorite"></md-tab> -->
+    </md-tabs>
+  </div>
 </template>
 
 <script>
@@ -50,14 +50,18 @@
 
 // import _ from "lodash";
 import factory from "@/lib/factory";
+import Page from "@/mixins/Page";
 
 export default {
-  name: "adddeck",
+  name: "addcard",
+
+  mixins: [Page],
 
   data: function() {
     return {
       deckName: null,
-      quizletSearchTerm: null
+      quizletSearchTerm: null,
+      pageName: "Add Card", // used to update the title bar etc
     };
   },
 
@@ -78,22 +82,22 @@ export default {
   //   }
   // },
   methods: {
-    addDeckFromScratch() {
-      console.log("adding a deck called", this.deckName);
-      // for now, just add a random deck to test
-      let deck = factory.createDeck({ name: this.deckName });
-      this.$store.dispatch("addDeck", deck);
-
-      // go back home
-      // TODO make an enum for route names instead of hardcoding
-      this.$router.push({ name: "home" });
-
-      // reset form
-      this.deckName = null;
-    },
-    quizletSearch() {
-      // search for a particular term
-    }
+    // addDeckFromScratch() {
+    //   console.log("adding a deck called", this.deckName);
+    //   // for now, just add a random deck to test
+    //   let deck = factory.createDeck({ name: this.deckName });
+    //   this.$store.dispatch("addDeck", deck);
+    //
+    //   // go back home
+    //   // TODO make an enum for route names instead of hardcoding
+    //   this.$router.push({ name: "home" });
+    //
+    //   // reset form
+    //   this.deckName = null;
+    // },
+    // quizletSearch() {
+    //   // search for a particular term
+    // }
   }
   // components: {
   //   HelloWorld,

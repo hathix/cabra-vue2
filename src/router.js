@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import DeckPage from "./views/DeckPage.vue";
 import Wrapper from "./views/Wrapper.vue";
 import AddDeck from "@/views/AddDeck.vue";
+import AddEditCard from "@/views/AddEditCard.vue";
 
 Vue.use(Router);
 
@@ -23,7 +24,14 @@ export default new Router({
           path: "/decks/:id",
           name: "deckpage",
           component: DeckPage,
-          props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+          props: true, // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+          children: [
+            {
+              path: "add",
+              name: "addcard",
+              component: AddEditCard
+            }
+          ]
         },
         {
           path: "/about",
