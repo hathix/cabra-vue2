@@ -27,6 +27,14 @@
       </md-button>
     </md-card-actions>
   </md-card>
+
+  <md-empty-state
+    v-show="deck.cards.length === 0"
+    md-icon="library_books"
+    md-label="Add some flashcards"
+    md-description="Add some flashcards to this deck to start studying.">
+    <router-link tag="md-button" class="md-primary md-raised" to="add">Add a card</router-link>
+  </md-empty-state>
 </div>
 </template>
 
