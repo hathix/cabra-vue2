@@ -25,6 +25,7 @@
 
 import _ from "lodash";
 import factory from "@/lib/factory";
+import Page from "@/mixins/Page";
 
 export default {
   name: "deckpage",
@@ -34,6 +35,10 @@ export default {
   // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
   props: ["id"],
   computed: {
+    pageName() {
+      // computes the page's name, which will be shown on the app's TopBar
+      return this.deck.name;
+    },
     deck() {
       // get deck from list of decks
 
@@ -52,7 +57,11 @@ export default {
         card: factory.createCard({ question: "3+5", answer: "8" })
       });
     }
-  }
+  },
+
+  mixins: [
+    Page
+  ]
   // components: {
   //   HelloWorld,
   //   DeckList

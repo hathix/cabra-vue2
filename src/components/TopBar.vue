@@ -12,7 +12,7 @@
       <md-icon>arrow_back</md-icon>
     </md-button>
 
-    <h3 class="md-title">{{ $route.name }}</h3>
+    <h3 class="md-title">{{ title }}</h3>
   </md-app-toolbar>
 
   <!-- TODO consider moving this out into another component -->
@@ -49,6 +49,12 @@
 <script>
 export default {
   name: "topbar",
+
+  // pass me whatever I should put in the top bar's title
+  // (the big text at the top of the app)
+  props: [
+    "title"
+  ],
 
   data: function() {
     return {

@@ -27,6 +27,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import DeckList from "@/components/DeckList.vue";
+import Page from "@/mixins/Page";
 // import factory from "@/lib/factory.js";
 
 export default {
@@ -35,6 +36,12 @@ export default {
     HelloWorld,
     DeckList
   },
+  computed: {
+    pageName() {
+      // used by the Page mixin to update the title bar and other stuff
+      return "Cabra";
+    }
+  },
   methods: {
     // addDeck() {
     //   console.log("adding a deck");
@@ -42,7 +49,9 @@ export default {
     //   let deck = factory.createDeck({ name: "New Deck" });
     //   this.$store.dispatch("addDeck", deck);
     // }
-  }
+  },
+
+  mixins: [Page]
 };
 </script>
 
