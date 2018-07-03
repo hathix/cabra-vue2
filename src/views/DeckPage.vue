@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-    <router-link tag="md-button" to="add" append>Add card</router-link>
+    <router-link to="add" append>Add card</router-link>
   </p>
     <p>
     My cards:
@@ -25,6 +25,7 @@
 import _ from "lodash";
 import factory from "@/lib/factory";
 import Page from "@/mixins/Page";
+import Deck from "@/mixins/Deck";
 
 export default {
   name: "deckpage",
@@ -32,33 +33,24 @@ export default {
   // this is much better than using $route directly -- that would make the
   // component very fragile. see:
   // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
-  props: ["id"],
+
   computed: {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return this.deck.name;
     },
-    deck() {
-      // get deck from list of decks
-
-      let deckId = this.id;
-      // TODO search in list of decks for this
-      let allDecks = this.$store.state.decks;
-      // find first deck that matches
-      return _.find(allDecks, { id: deckId });
-    }
   },
   methods: {
-    addCard() {
-      // TODO: abstract out card creation
-      this.$store.dispatch("addCardToDeck", {
-        deckId: this.id,
-        card: factory.createCard({ question: "3+5", answer: "8" })
-      });
-    }
+    // addCard() {
+    //   // TODO: abstract out card creation
+    //   this.$store.dispatch("addCardToDeck", {
+    //     deckId: this.id,
+    //     card: factory.createCard({ question: "3+5", answer: "8" })
+    //   });
+    // }
   },
 
-  mixins: [Page]
+  mixins: [Page, Deck]
   // components: {
   //   HelloWorld,
   //   DeckList
