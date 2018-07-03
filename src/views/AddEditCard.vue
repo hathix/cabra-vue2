@@ -1,7 +1,20 @@
 <template>
-  <div>
-    Hello, {{ deck.name }}!
-  </div>
+<div>
+  <form novalidate class="md-layout" @submit="addCard">
+    <md-field>
+      <label>Question</label>
+      <md-textarea v-model="question"></md-textarea>
+      <!-- <span class="md-helper-text">Helper text</span> -->
+    </md-field>
+    <md-field>
+      <label>Answer</label>
+      <md-textarea v-model="answer"></md-textarea>
+      <!-- <span class="md-helper-text">Helper text</span> -->
+    </md-field>
+
+    <md-button type="submit" class="md-primary">Create card</md-button>
+  </form>
+</div>
 </template>
 
 <script>
@@ -18,6 +31,13 @@ export default {
   name: "addcard",
 
   mixins: [Page, Deck],
+
+  data: function() {
+    return {
+      question: null,
+      answer: null
+    }
+  },
 
   computed: {
     pageName() {
@@ -43,6 +63,26 @@ export default {
   //   }
   // },
   methods: {
+    addCard() {
+      console.log("adding a card");
+
+      // TODO add calidation
+      let question = this.question;
+      let answer = this.answer;
+
+      let card = factory.createCard({ question, answer });
+      // console.log(card);
+
+      // add card
+      this.$store.dispatch("addCardToDeck", {
+        deckId: this.id,
+        card: card
+      });
+
+      // clear form
+      this.question = null;
+      this.answer = null;
+    }
     // addDeckFromScratch() {
     //   console.log("adding a deck called", this.deckName);
     //   // for now, just add a random deck to test

@@ -57,8 +57,8 @@ export default new Vuex.Store({
       // for instance above we want the deck name, here we want a fully-formed
       // card. i would rather take more-structured stuff to make it more flexible.
 
-      console.log(deckId);
-      console.log(card);
+      // console.log(deckId);
+      // console.log(card);
 
       // find deck in state
       let deck = _.find(state.decks, { id: deckId });

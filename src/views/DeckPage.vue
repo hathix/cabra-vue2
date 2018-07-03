@@ -22,8 +22,8 @@
 
 // TODO give cards unique IDs
 
-import _ from "lodash";
-import factory from "@/lib/factory";
+// import _ from "lodash";
+// import factory from "@/lib/factory";
 import Page from "@/mixins/Page";
 import Deck from "@/mixins/Deck";
 
