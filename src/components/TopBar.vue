@@ -12,7 +12,7 @@
       <md-icon>arrow_back</md-icon>
     </md-button>
 
-    <h3 class="md-title">Cabra</h3>
+    <h3 class="md-title">{{ $route.name }}</h3>
   </md-app-toolbar>
 
   <!-- TODO consider moving this out into another component -->
