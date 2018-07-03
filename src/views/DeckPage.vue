@@ -38,7 +38,7 @@ export default {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return this.deck.name;
-    },
+    }
   },
   methods: {
     // addCard() {
