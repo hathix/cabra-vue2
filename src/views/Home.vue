@@ -25,7 +25,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+// import HelloWorld from "@/components/HelloWorld.vue";
 import DeckList from "@/components/DeckList.vue";
 import Page from "@/mixins/Page";
 // import factory from "@/lib/factory.js";
@@ -33,7 +33,7 @@ import Page from "@/mixins/Page";
 export default {
   name: "home",
   components: {
-    HelloWorld,
+    // HelloWorld,
     DeckList
   },
   data: function() {
