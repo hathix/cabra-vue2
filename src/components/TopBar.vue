@@ -22,9 +22,9 @@
     </md-toolbar>
 
     <md-list>
-      <md-list-item>
-        <md-icon>move_to_inbox</md-icon>
-        <span class="md-list-item-text">Inbox</span>
+      <md-list-item @click="$store.dispatch('clearAllData')">
+        <md-icon>delete_sweep</md-icon>
+        <span class="md-list-item-text">Clear All Data</span>
       </md-list-item>
 
       <md-list-item>

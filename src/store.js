@@ -31,12 +31,19 @@ export default new Vuex.Store({
     // design decision (for now): never call a mutation externally. only call actions.
     // "state" is a given parameter. think of it like "self" in python.
     addDeck(state, deck) {
+      if (!(state.decks)) {
+        state.decks = [];
+      }
       state.decks.push(deck);
     },
 
     addCardToDeck(state, { deck, card }) {
       // assumes `deck` is already in the state
       deck.cards.push(card);
+    },
+
+    clearAllData(state) {
+      state.decks = [];
     }
   },
   actions: {
@@ -57,7 +64,12 @@ export default new Vuex.Store({
       let deck = _.find(state.decks, { id: deckId });
       // add card to it
       commit("addCardToDeck", { deck: deck, card: card });
-    }
+    },
+
+    clearAllData({ commit }) {
+      console.log('clearing all data');
+      commit("clearAllData");
+    },
   },
 
   plugins: [
