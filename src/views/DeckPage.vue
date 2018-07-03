@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-    <router-link to="add" append>Add card</router-link>
+    <router-link to="add" tag="md-button" append>Add card</router-link>
   </p>
     <p>
     My cards:
