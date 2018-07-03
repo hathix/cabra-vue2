@@ -19,9 +19,6 @@
     </md-card-content>
 
     <md-card-actions>
-      <md-button class="md-icon-button" @click="editCard(card.id)">
-        <md-icon>create</md-icon>
-      </md-button>
       <router-link class="md-icon-button" tag="md-button" :to="card.id" append>
         <md-icon>create</md-icon>
       </router-link>
@@ -52,7 +49,7 @@ export default {
     return {
       question: null,
       answer: null
-    }
+    };
   },
 
   computed: {

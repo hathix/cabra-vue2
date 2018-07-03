@@ -42,6 +42,21 @@ export default new Vuex.Store({
       deck.cards.push(card);
     },
 
+    updateCard(state, { deck, card }) {
+      // we need to rip out the old card with that id with the new one
+
+      deck.cards = _.map(deck.cards, elem => {
+        // keep every card in the old array EXCEPT the one with the new card's id
+        // (in that case, replace the card with the new one, in the same location)
+        if (elem.id === card.id) {
+          return card;
+        } else {
+          return elem;
+        }
+      });
+      // deck.cards.push(card);
+    },
+
     clearAllData(state) {
       state.decks = [];
     }
@@ -52,18 +67,13 @@ export default new Vuex.Store({
       commit("addDeck", deck);
     },
 
-    addCardToDeck({ commit, state }, { deckId, card }) {
-      // TODO standardize how much pre-structuring we want to have
-      // for instance above we want the deck name, here we want a fully-formed
-      // card. i would rather take more-structured stuff to make it more flexible.
-
-      // console.log(deckId);
-      // console.log(card);
-
-      // find deck in state
-      let deck = _.find(state.decks, { id: deckId });
+    addCardToDeck({ commit, state }, { deck, card }) {
       // add card to it
       commit("addCardToDeck", { deck: deck, card: card });
+    },
+
+    updateCard({ commit, state }, { deck, card }) {
+      commit("updateCard", { deck: deck, card: card });
     },
 
     clearAllData({ commit }) {

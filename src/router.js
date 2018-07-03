@@ -22,7 +22,6 @@ export default new Router({
           component: Home
         },
 
-
         {
           path: "/decks/:id",
           name: "deckpage",

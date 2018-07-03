@@ -1,18 +1,21 @@
 <template>
 <div>
-  <form novalidate class="md-layout" @submit="addCard">
+  <form novalidate class="md-layout" @submit="finishCard">
     <md-field>
       <label>Question</label>
-      <md-textarea v-model="question"></md-textarea>
+      <md-textarea v-model="card.question"></md-textarea>
       <!-- <span class="md-helper-text">Helper text</span> -->
     </md-field>
     <md-field>
       <label>Answer</label>
-      <md-textarea v-model="answer"></md-textarea>
+      <md-textarea v-model="card.answer"></md-textarea>
       <!-- <span class="md-helper-text">Helper text</span> -->
     </md-field>
 
-    <md-button type="submit" class="md-primary">Create card</md-button>
+    <md-button type="submit" class="md-primary">
+      <span v-if="editing">Finish editing</span>
+      <span v-else>Create card</span>
+    </md-button>
   </form>
 </div>
 </template>
@@ -34,96 +37,68 @@ export default {
 
   // optional props on top of the deckId (which the Deck mixin handles)
   // if they pass a card ID, we are EDITING that card
-  props: ['cardId'],
+  props: ["cardId"],
 
   data: function() {
     return {
-      question: null,
-      answer: null
-    }
+      card: null,
+      editing: this.cardId ? true : false // true if a cardId was passed
+    };
   },
 
   computed: {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return "Add Card to " + this.deck.name;
+    }
+  },
+
+  beforeMount: function() {
+    // here, we determine if we are editing a card or adding a new one
+
+    if (this.editing) {
+      // find the card from the deck and modify it
+      let allCards = this.deck.cards;
+      // find first card that matches
+      this.card = _.find(allCards, {
+        id: this.cardId
+      });
+    } else {
+      this.createBlankCard();
+    }
+  },
+
+  methods: {
+    createBlankCard() {
+      this.card = factory.createCard({ question: null, answer: null });
+      return this.card;
     },
 
-    card() {
-      // if applicable, the card we are editing. If we're creating a card,
-      // this is null.
+    finishCard() {
+      console.log("finishing card", this.card.id);
 
-      if (this.cardId) {
-        let allCards = this.deck.cards;
-        // find first card that matches
-        let card = _.find(allCards, {
-          id: this.cardId
+      if (this.editing) {
+        // the store is immutable so we have to commit something to edit the card
+        this.$store.dispatch("updateCard", {
+          deck: this.deck,
+          card: this.card
         });
-        return card;
-      }
-      else {
-        return null;
+
+        // just go back
+        this.$router.go(-1);
+      } else {
+        // the card exists, but it is not in the deck yet. so add it
+        this.$store.dispatch("addCardToDeck", {
+          deck: this.deck,
+          card: this.card
+        });
+
+        // TODO add validation
+
+        // now wipe the slate clean (and in doing so reset the form )
+        this.createBlankCard();
       }
     }
-  },
-
-  mounted: function() {
-      console.log("Our card is ", this.card);
-  },
-
-  // the router will pass the deck's ID, which is extracted from the URL.
-  // this is much better than using $route directly -- that would make the
-  // component very fragile. see:
-  // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
-  // props: ["id"],
-  // computed: {
-  //   deck() {
-  //     // get deck from list of decks
-  //
-  //     let deckId = this.id;
-  //     // TODO search in list of decks for this
-  //     let allDecks = this.$store.state.decks;
-  //     // find first deck that matches
-  //     return _.find(allDecks, { id: deckId });
-  //   }
-  // },
-  methods: {
-    addCard() {
-      console.log("adding a card");
-
-      // TODO add calidation
-      let question = this.question;
-      let answer = this.answer;
-
-      let card = factory.createCard({ question, answer });
-      // console.log(card);
-
-      // add card
-      this.$store.dispatch("addCardToDeck", {
-        deckId: this.id,
-        card: card
-      });
-
-      // clear form
-      this.question = null;
-      this.answer = null;
-    }
-    // addDeckFromScratch() {
-    //   console.log("adding a deck called", this.deckName);
-    //   // for now, just add a random deck to test
-    //   let deck = factory.createDeck({ name: this.deckName });
-    //   this.$store.dispatch("addDeck", deck);
-    //
-    //   // go back home
-    //   // TODO make an enum for route names instead of hardcoding
-    //   this.$router.push({ name: "home" });
-    //
-    //   // reset form
-    //   this.deckName = null;
-    // },
-    // quizletSearch() {
-    //   // search for a particular term
-    // }
   }
   // components: {
   //   HelloWorld,
