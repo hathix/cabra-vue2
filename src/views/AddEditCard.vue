@@ -32,6 +32,10 @@ export default {
 
   mixins: [Page, Deck],
 
+  // optional props on top of the deckId (which the Deck mixin handles)
+  // if they pass a card ID, we are EDITING that card
+  props: ['cardId'],
+
   data: function() {
     return {
       question: null,
@@ -43,7 +47,28 @@ export default {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return "Add Card to " + this.deck.name;
+    },
+
+    card() {
+      // if applicable, the card we are editing. If we're creating a card,
+      // this is null.
+
+      if (this.cardId) {
+        let allCards = this.deck.cards;
+        // find first card that matches
+        let card = _.find(allCards, {
+          id: this.cardId
+        });
+        return card;
+      }
+      else {
+        return null;
+      }
     }
+  },
+
+  mounted: function() {
+      console.log("Our card is ", this.card);
   },
 
   // the router will pass the deck's ID, which is extracted from the URL.

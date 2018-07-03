@@ -1,10 +1,35 @@
 <template>
 <div>
-  <ul>
+  <!-- <ul>
     <li v-for="card in deck.cards" :key="card.id">
       {{ card.question }} / {{ card.answer }}
     </li>
-  </ul>
+  </ul> -->
+
+  <md-card v-for="card in deck.cards" :key="card.id">
+    <md-card-header>
+      <!-- <div class="md-title">{{ card.question }}</div> -->
+    </md-card-header>
+
+    <md-card-content>
+      <div class="md-layout md-gutter">
+        <div class="md-layout-item md-small-size-50 md-xsmall-size-100">{{ card.question }}</div>
+        <div class="md-layout-item md-small-size-50 md-xsmall-size-100">{{ card.answer }}</div>
+      </div>
+    </md-card-content>
+
+    <md-card-actions>
+      <md-button class="md-icon-button" @click="editCard(card.id)">
+        <md-icon>create</md-icon>
+      </md-button>
+      <router-link class="md-icon-button" tag="md-button" :to="card.id" append>
+        <md-icon>create</md-icon>
+      </router-link>
+      <md-button class="md-icon-button" @click="deleteCard(card.id)">
+        <md-icon>delete</md-icon>
+      </md-button>
+    </md-card-actions>
+  </md-card>
 </div>
 </template>
 
@@ -54,25 +79,11 @@ export default {
   //   }
   // },
   methods: {
-    addCard() {
-      console.log("adding a card");
-
-      // TODO add calidation
-      let question = this.question;
-      let answer = this.answer;
-
-      let card = factory.createCard({ question, answer });
-      // console.log(card);
-
-      // add card
-      this.$store.dispatch("addCardToDeck", {
-        deckId: this.id,
-        card: card
-      });
-
-      // clear form
-      this.question = null;
-      this.answer = null;
+    editCard(cardId) {
+      console.log("EDITING", cardId);
+    },
+    deleteCard(cardId) {
+      console.log("DELETING", cardId);
     }
     // addDeckFromScratch() {
     //   console.log("adding a deck called", this.deckName);

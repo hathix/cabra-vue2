@@ -41,7 +41,12 @@ export default new Router({
           component: ViewCards,
           props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
         },
-
+        {
+          path: "/decks/:id/cards/:cardId",
+          name: "editcard",
+          component: AddEditCard,
+          props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+        },
 
         {
           path: "/about",
