@@ -51,6 +51,14 @@
         </md-button> -->
       </md-list-item>
     </md-list>
+
+    <md-empty-state
+      v-show="decks.length === 0"
+      md-icon="class"
+      md-label="Create your first deck"
+      md-description="Create flashcards from scratch or import from a library of millions.">
+      <router-link tag="md-button" class="md-primary md-raised" to="add">Create first deck</router-link>
+    </md-empty-state>
   </div>
 </template>
 
