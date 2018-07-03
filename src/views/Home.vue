@@ -36,10 +36,9 @@ export default {
     HelloWorld,
     DeckList
   },
-  computed: {
-    pageName() {
-      // used by the Page mixin to update the title bar and other stuff
-      return "Cabra";
+  data: function() {
+    return {
+      pageName: "Cabra" // used by the Page mixin to update the title bar and other stuff
     }
   },
   methods: {

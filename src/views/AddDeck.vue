@@ -50,14 +50,18 @@
 
 // import _ from "lodash";
 import factory from "@/lib/factory";
+import Page from "@/mixins/Page";
 
 export default {
   name: "adddeck",
 
+  mixins: [Page],
+
   data: function() {
     return {
       deckName: null,
-      quizletSearchTerm: null
+      quizletSearchTerm: null,
+      pageName: "Add Deck"
     };
   },
 

@@ -4,7 +4,7 @@
 
   To use:
 
-  - define a computed or static property called `pageName`
+  - define a property called `pageName`, either in `computed` or `data`
 */
 export default {
   mounted: function() {
