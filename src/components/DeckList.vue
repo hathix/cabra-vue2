@@ -3,18 +3,35 @@
 <template>
   <div>
 
-    <md-card md-with-hover  v-for="deck in decks" :to="'decks/' + deck.id" :key="deck.id">
+    <!-- deck name changer
+      TODO factor this out into its own component?
+    -->
+    <md-dialog-prompt
+      :md-active.sync="renamerOpen"
+      v-model="activeDeck && activeDeck.name || null"
+      md-title="Deck Name"
+      md-confirm-text="Change"
+      md-cancel-text="Cancel"
+      @md-confirm="renameDeck"
+       />
+
+    <md-card md-with-hover v-for="deck in decks" :to="'decks/' + deck.id" :key="deck.id">
       <md-card-header>
         <div class="md-title">{{ deck.name }}</div>
       </md-card-header>
 
       <md-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        {{ deck.cards.length }} cards
       </md-card-content>
 
       <md-card-actions>
-        <md-button>Action</md-button>
-        <md-button>Action</md-button>
+        <!-- TODO make this actually rename the deck -->
+        <md-button class="md-icon-button" @click="openDeckRenamer(deck)">
+          <md-icon>create</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" @click="deleteDeck(deck)">
+          <md-icon>delete</md-icon>
+        </md-button>
       </md-card-actions>
     </md-card>
 
@@ -29,6 +46,31 @@
 <script>
 export default {
   name: "DeckList",
+
+  data: function() {
+    return {
+      // for the deck renaming modal
+      renamerOpen: false,
+      activeDeck: null
+    }
+  },
+
+  methods: {
+    openDeckRenamer(deck) {
+      this.activeDeck = deck;
+      this.renamerOpen = true;
+    },
+
+    renameDeck(newDeckName) {
+      // the deck's name doesn't auto-update b/c binding stuff
+      // so we must manually update it
+      this.$store.dispatch("renameDeck", {
+        deck: this.activeDeck,
+        name: newDeckName
+      });
+    }
+  },
+
   // props: {
   //   msg: String
   // },

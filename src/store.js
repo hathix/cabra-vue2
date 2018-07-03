@@ -37,6 +37,10 @@ export default new Vuex.Store({
       state.decks.push(deck);
     },
 
+    renameDeck(state, { deck, name }) {
+      deck.name = name;
+    },
+
     addCardToDeck(state, { deck, card }) {
       // assumes `deck` is already in the state
       deck.cards.push(card);
@@ -72,6 +76,10 @@ export default new Vuex.Store({
     // higher-level function to add a deck, called from the outside
     addDeck({ commit /*, state */ }, deck) {
       commit("addDeck", deck);
+    },
+
+    renameDeck({ commit }, { deck, name }) {
+      commit("renameDeck", { deck: deck, name: name });
     },
 
     addCardToDeck({ commit, state }, { deck, card }) {
