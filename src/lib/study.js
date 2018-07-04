@@ -17,7 +17,7 @@ export class StudySession {
 
     this.deck = deck;
 
-    // order in which to show cards: question or answer first 
+    // order in which to show cards: question or answer first
     this.order = order;
 
     // decide which cards to study

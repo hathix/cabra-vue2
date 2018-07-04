@@ -36,10 +36,7 @@
 export default {
   name: "SessionViewer",
 
-  props: [
-    'deck',
-    'session'
-  ],
+  props: ["deck", "session"],
 
   data: function() {
     return {
@@ -74,11 +71,15 @@ export default {
 
     cardFront() {
       // TODO extract this all into an enum
-      return this.order === "question_first" ? this.currentCard.question : this.currentCard.answer;
+      return this.order === "question_first"
+        ? this.currentCard.question
+        : this.currentCard.answer;
     },
 
     cardBack() {
-      return this.order === "question_first" ? this.currentCard.answer : this.currentCard.question;
+      return this.order === "question_first"
+        ? this.currentCard.answer
+        : this.currentCard.question;
     },
 
     order() {

@@ -32,7 +32,7 @@ import SessionViewer from "@/components/SessionViewer.vue";
 import Page from "@/mixins/Page";
 import Deck from "@/mixins/Deck";
 
-import { StudySession, CARD_STUDY_RESULTS } from "@/lib/study";
+import { StudySession /* , CARD_STUDY_RESULTS */ } from "@/lib/study";
 
 export default {
   name: "studypage",
@@ -43,9 +43,9 @@ export default {
     return {
       settings: {
         // TODO make this an enum not hardcoded
-        order: "question_first",
+        order: "question_first"
       },
-      session: null,
+      session: null
     };
   },
 
@@ -57,14 +57,14 @@ export default {
   },
 
   methods: {
-      startSession() {
-        // TODO: pass options
-        this.session = new StudySession({ deck: this.deck, ...this.settings });
-        console.log("Made session");
-      }
+    startSession() {
+      // TODO: pass options
+      this.session = new StudySession({ deck: this.deck, ...this.settings });
+      console.log("Made session");
+    }
   },
 
-  components: {SessionViewer}
+  components: { SessionViewer }
 };
 </script>
 
