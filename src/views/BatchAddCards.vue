@@ -6,17 +6,23 @@
       <md-textarea v-model="inputText"></md-textarea>
     </md-field>
 
-    <md-button type="submit" class="md-primary">
-      Done
+    <md-button type="submit" class="md-primary" :disabled="!inputText">
+      Add cards
     </md-button>
   </form>
 
   <!-- TODO alter the snackbar if they edited a card instead of creating one.
   but if we automatically go back after editing, the snackbar will be hidden -->
-  <!-- <md-snackbar md-position="center" :md-duration="snackbarDuration" :md-active.sync="showSnackbar" md-persistent>
-    <span>Card successfully created!</span>
+  <md-snackbar md-position="center" :md-duration="snackbarDuration" :md-active.sync="showSnackbar" md-persistent>
+    <span v-if="numAddedCards > 0">
+      Added {{ numAddedCards }} card(s)!
+    </span>
+    <span v-if="numInvalidCards > 0">
+      {{ numInvalidCards }} card(s) were invalid.
+    </span>
+
     <md-button class="md-primary" @click="showSnackbar = false">Close</md-button>
-  </md-snackbar> -->
+  </md-snackbar>
 </div>
 </template>
 
@@ -46,14 +52,17 @@ export default {
       inputText: null,
 
       // divider between question and answer
-      delimiter: ","
-      // TODO use this library to parse csv http://csv.adaltas.com/parse/
+      // delimiter: ","
+
 
       // card: null,
       // editing: this.cardId ? true : false, // true if a cardId was passed
       //
-      // showSnackbar: false,
-      // snackbarDuration: 3000 // milliseconds
+      // for snackbar
+      numAddedCards: 0,
+      numInvalidCards: 0,
+      showSnackbar: false,
+      snackbarDuration: 5000 // milliseconds
     };
   },
 
@@ -82,7 +91,6 @@ export default {
   methods: {
     submitForm() {
       // parse and add cards
-      console.log(this.inputText);
 
       // parse csv
       const output = CSV.parse(this.inputText);
@@ -113,11 +121,27 @@ export default {
       );
 
       console.log(newCards);
+
       // now add these cards
       this.$store.dispatch("addCardsToDeck", {
         deck: this.deck,
         cards: newCards
       });
+
+      // now put the invalid cards back
+      if (invalidRows.length > 0) {
+        let remainingText = CSV.stringify(invalidRows);
+        this.inputText = remainingText;
+      }
+      else {
+        // everything is perfect!
+        this.inputText = null;
+      }
+
+      // show snackbar
+      this.numAddedCards = newCards.length;
+      this.numInvalidCards = invalidRows.length;
+      this.showSnackbar = true;
     }
     // createBlankCard() {
     //   this.card = factory.createCard({ question: null, answer: null });
