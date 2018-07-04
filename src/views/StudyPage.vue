@@ -20,9 +20,7 @@ export default {
   mixins: [Page, Deck],
 
   data: function() {
-    return {
-
-    }
+    return {};
   },
 
   computed: {
@@ -30,7 +28,7 @@ export default {
       // computes the page's name, which will be shown on the app's TopBar
       return "Study " + this.deck.name;
     }
-  },
+  }
 };
 </script>
 
