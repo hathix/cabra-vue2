@@ -96,7 +96,7 @@ export default {
         deck: this.deck
       });
 
-      // TODO show snackbar when deck has been deleted
+      // TODO show snackbar when deck has been deletedt
     }
   },
 
@@ -109,7 +109,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .md-speed-dial {
-//   z-index: 100;
-// }
 </style>
