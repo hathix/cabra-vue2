@@ -7,6 +7,7 @@ import Wrapper from "./views/Wrapper.vue";
 import AddDeck from "@/views/AddDeck.vue";
 import AddEditCard from "@/views/AddEditCard.vue";
 import ViewCards from "@/views/ViewCards.vue";
+import StudyPage from "@/views/StudyPage.vue";
 
 Vue.use(Router);
 
@@ -32,6 +33,12 @@ export default new Router({
           path: "/decks/:id/add",
           name: "addcard",
           component: AddEditCard,
+          props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+        },
+        {
+          path: "/decks/:id/study",
+          name: "studypage",
+          component: StudyPage,
           props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
         },
         {

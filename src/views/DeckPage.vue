@@ -2,6 +2,7 @@
   <div>
     <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
+    <router-link to="study" tag="md-button" append>Study</router-link>
     <router-link to="cards" tag="md-button" append>View cards</router-link>
 
     <md-button @click="renamerOpen = true">Rename deck</md-button>
