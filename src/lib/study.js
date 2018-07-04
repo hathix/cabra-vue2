@@ -57,7 +57,7 @@ export class StudySession {
     // cards only store their rank name, not the actual rank (b/c you can only
     // store pure objects in Vue). TODO think of a way to fix this.
     // so we must dynamically calculate some stuff
-    let currentCardRank = Rank.getRankByName(currentCard.rankName);
+    let currentCardRank = Rank.RANKS.enumValueOf(currentCard.rankName);
 
     let newRank = null;
 
@@ -67,7 +67,7 @@ export class StudySession {
         break;
       case CARD_STUDY_RESULTS.KNEW:
         // you knew this card! promote it to the next rank.
-        newRank = Rank.nextRank(currentCardRank);
+        newRank = currentCardRank.nextRank();
         currentCard.rankName = newRank.name;
         currentCard.repsLeft = newRank.baseRepsLeft;
         break;
