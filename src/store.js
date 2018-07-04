@@ -6,6 +6,9 @@ import _ from "lodash";
 
 Vue.use(Vuex);
 
+// TODO refactor this to use getters and other sugar
+// https://vuex.vuejs.org/guide/getters.html
+
 export default new Vuex.Store({
   state: {
     decks: [

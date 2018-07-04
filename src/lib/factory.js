@@ -1,5 +1,7 @@
 // Factory for creating cards + decks
 
+import * as Rank from "@/lib/rank";
+
 let factory = {};
 
 factory.createDeck = function({ name }) {
@@ -14,7 +16,9 @@ factory.createCard = function({ question, answer }) {
   return {
     question: question,
     answer: answer,
-    id: "c" + Date.now() // some unique string
+    id: "c" + Date.now(), // some unique string
+    rankName: Rank.BASE_RANK.name, // base rank
+    repsLeft: Rank.BASE_RANK.baseRepsLeft
   };
 };
 
