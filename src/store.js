@@ -72,9 +72,13 @@ export default new Vuex.Store({
       // deck.cards.push(card);
     },
 
-    updateAllCards(state, { deck, cardFunction }) {
+    batchUpdateCards(state, { deck, modifierFunction, predicateFunction }) {
       // we simply need to map the cardFunction over all cards in the deck
-      _.map(deck.cards, elem => cardFunction(elem));
+      // _.map(deck.cards, elem => cardFunction(elem));
+      // first choose which cards to edit
+      let cardsToUpdate = _.filter(deck.cards, predicateFunction);
+      // now run the function over all of them
+      _.map(cardsToUpdate, modifierFunction);
     },
 
     deleteCard(state, { deck, card }) {
@@ -114,8 +118,8 @@ export default new Vuex.Store({
 
     // run the given function over all cards
     // the function should mutate the given card. we will save it back.
-    updateAllCards({ commit }, { deck, cardFunction }) {
-      commit("updateAllCards", { deck, cardFunction });
+    batchUpdateCards({ commit }, { deck, modifierFunction, predicateFunction = _.identity }) {
+      commit("batchUpdateCards", { deck, modifierFunction, predicateFunction });
     },
 
     deleteCard({ commit }, { deck, card }) {

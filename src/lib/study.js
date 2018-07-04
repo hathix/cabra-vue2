@@ -22,8 +22,11 @@ export class StudySession {
     this.order = order;
 
     // decide which cards to study
-    this.cards = this.determineCardsToStudy();
+    this.determineCardsToStudy();
     console.log("We will study these cards", this.cards);
+
+
+
     // the cards in this.cards may be mutable, but the array itself is not
     // i.e. you cannot add/remove cards from this
     // therefore we can count which card we are currently showing with this
@@ -38,21 +41,32 @@ export class StudySession {
 
   determineCardsToStudy() {
     // decides which cards out of the deck to study
+    // sets this.cards and "skips" everything else (reducing its repsLeft)
 
     // by default, we study all cards where there are 0 reps left.
     // but if nothing has 0 reps left, then let the minimum be M.
     // we must subtract M from the repsLeft of each card
     let minRepsOfCards = _.minBy(this.deck.cards, card => card.repsLeft).repsLeft;
 
-    console.log(`deducting ${minRepsOfCards} from all`);
-    // if nonzero, we need to reduce the repsleft of all cards by this amount
-    this.store.dispatch("updateAllCards", {
-      deck: this.deck,
-      cardFunction: (card) => card.repsLeft -= minRepsOfCards
-    });
+    if (minRepsOfCards > 0) {
+      console.log(`deducting ${minRepsOfCards} from all`);
+      // if nonzero, we need to reduce the repsleft of ALL cards by this amount
+      this.store.dispatch("batchUpdateCards", {
+        deck: this.deck,
+        modifierFunction: (card) => card.repsLeft -= minRepsOfCards,
+        // no predicate since we choose all cards
+      });
+    }
 
-    // now return everything with zero reps
-    return _.filter(this.deck.cards, card => card.repsLeft === 0);
+    // now we study everything with zero reps
+    this.cards = _.filter(this.deck.cards, card => card.repsLeft === 0);
+
+    // reduce repsLeft of everything to skip by 1
+    this.store.dispatch("batchUpdateCards", {
+      deck: this.deck,
+      modifierFunction: card => card.repsLeft -= 1,
+      predicateFunction: card => card.repsLeft !== 0
+    });
   }
 
 
