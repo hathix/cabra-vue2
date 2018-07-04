@@ -1,12 +1,10 @@
 /**
   Utilities for card ranks.
 **/
-import _ from "lodash";
-import {
-  Enum
-} from "enumify";
+// import _ from "lodash";
+import { Enum } from "enumify";
 
-export class RANKS extends Enum {};
+export class RANKS extends Enum {}
 RANKS.initEnum({
   E: {
     name: "E",
@@ -14,7 +12,7 @@ RANKS.initEnum({
     color: "#FF0000",
     score: 0.0,
     get nextRank() {
-      return RANKS.D
+      return RANKS.D;
     }
   },
   D: {
@@ -23,7 +21,7 @@ RANKS.initEnum({
     color: "#FF7F00",
     score: 0.25,
     get nextRank() {
-      return RANKS.C
+      return RANKS.C;
     }
   },
   C: {
@@ -32,7 +30,7 @@ RANKS.initEnum({
     color: "#FFC800",
     score: 0.5,
     get nextRank() {
-      return RANKS.B
+      return RANKS.B;
     }
   },
   B: {
@@ -41,7 +39,7 @@ RANKS.initEnum({
     color: "#0094FF",
     score: 0.8,
     get nextRank() {
-      return RANKS.A
+      return RANKS.A;
     }
   },
   A: {
@@ -50,7 +48,7 @@ RANKS.initEnum({
     color: "#00E500",
     score: 1.0,
     get nextRank() {
-      return RANKS.A
+      return RANKS.A;
     }
   }
 });
