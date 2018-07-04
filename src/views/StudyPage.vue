@@ -32,9 +32,7 @@ import SessionViewer from "@/components/SessionViewer.vue";
 import Page from "@/mixins/Page";
 import Deck from "@/mixins/Deck";
 
-import {
-  StudySession /* , CARD_STUDY_RESULTS */
-} from "@/lib/study";
+import { StudySession /* , CARD_STUDY_RESULTS */ } from "@/lib/study";
 
 export default {
   name: "studypage",

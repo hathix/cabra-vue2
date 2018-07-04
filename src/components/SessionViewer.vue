@@ -50,7 +50,6 @@
 </template>
 
 <script>
-
 import { CARD_STUDY_RESULTS } from "@/lib/study";
 
 export default {
@@ -89,7 +88,7 @@ export default {
     studyResult(result) {
       // result is from the CARD_STUDY_RESULTS enum
       console.log("RESULT", result),
-      this.finished = this.session.cardStudied(result);
+        (this.finished = this.session.cardStudied(result));
     }
   },
 
@@ -129,21 +128,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  // @import "~vue-material/theme/engine";
-  //
-  // @include md-register-theme("green-button", (
-  //   primary: md-get-palette-color(green, 500)
-  // ));
-  //
-  // @include md-register-theme("black-card", (
-  //   primary: md-get-palette-color(black, 500)
-  // ));
-  //
-  // @include md-register-theme("purple-card", (
-  //   primary: md-get-palette-color(purple, 500)
-  // ));
-  //
-  // @include md-register-theme("orange-card", (
-  //   primary: md-get-palette-color(orange, 500)
-  // ));
+// @import "~vue-material/theme/engine";
+//
+// @include md-register-theme("green-button", (
+//   primary: md-get-palette-color(green, 500)
+// ));
+//
+// @include md-register-theme("black-card", (
+//   primary: md-get-palette-color(black, 500)
+// ));
+//
+// @include md-register-theme("purple-card", (
+//   primary: md-get-palette-color(purple, 500)
+// ));
+//
+// @include md-register-theme("orange-card", (
+//   primary: md-get-palette-color(orange, 500)
+// ));
 </style>

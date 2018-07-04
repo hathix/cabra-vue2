@@ -25,8 +25,6 @@ export class StudySession {
     this.determineCardsToStudy();
     console.log("We will study these cards", this.cards);
 
-
-
     // the cards in this.cards may be mutable, but the array itself is not
     // i.e. you cannot add/remove cards from this
     // therefore we can count which card we are currently showing with this
@@ -46,14 +44,15 @@ export class StudySession {
     // by default, we study all cards where there are 0 reps left.
     // but if nothing has 0 reps left, then let the minimum be M.
     // we must subtract M from the repsLeft of each card
-    let minRepsOfCards = _.minBy(this.deck.cards, card => card.repsLeft).repsLeft;
+    let minRepsOfCards = _.minBy(this.deck.cards, card => card.repsLeft)
+      .repsLeft;
 
     if (minRepsOfCards > 0) {
       console.log(`deducting ${minRepsOfCards} from all`);
       // if nonzero, we need to reduce the repsleft of ALL cards by this amount
       this.store.dispatch("batchUpdateCards", {
         deck: this.deck,
-        modifierFunction: (card) => card.repsLeft -= minRepsOfCards,
+        modifierFunction: card => (card.repsLeft -= minRepsOfCards)
         // no predicate since we choose all cards
       });
     }
@@ -64,11 +63,10 @@ export class StudySession {
     // reduce repsLeft of everything to skip by 1
     this.store.dispatch("batchUpdateCards", {
       deck: this.deck,
-      modifierFunction: card => card.repsLeft -= 1,
+      modifierFunction: card => (card.repsLeft -= 1),
       predicateFunction: card => card.repsLeft !== 0
     });
   }
-
 
   // returns the current card to be studied
   getCurrentCard() {
@@ -117,7 +115,7 @@ export class StudySession {
 
     // update the card in the deck as soon as it is studied
     // the only change is the rank
-    console.log("updating card....")
+    console.log("updating card....");
     this.store.dispatch("updateCard", {
       deck: this.deck,
       card: currentCard

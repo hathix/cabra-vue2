@@ -8,6 +8,7 @@ import AddDeck from "@/views/AddDeck.vue";
 import AddEditCard from "@/views/AddEditCard.vue";
 import ViewCards from "@/views/ViewCards.vue";
 import StudyPage from "@/views/StudyPage.vue";
+import BatchAddCards from "@/views/BatchAddCards";
 
 Vue.use(Router);
 
@@ -33,6 +34,12 @@ export default new Router({
           path: "/decks/:id/add",
           name: "addcard",
           component: AddEditCard,
+          props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
+        },
+        {
+          path: "/decks/:id/batchadd",
+          name: "batchadd",
+          component: BatchAddCards,
           props: true // see https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
         },
         {

@@ -57,6 +57,12 @@ export default new Vuex.Store({
       deck.cards.push(card);
     },
 
+    addCardsToDeck(state, { deck, cards }) {
+      // append to the array, but since concat() doesn't change the original array,
+      // we must reassign
+      deck.cards = deck.cards.concat(cards);
+    },
+
     updateCard(state, { deck, card }) {
       // we need to rip out the old card with that id with the new one
 
@@ -112,13 +118,20 @@ export default new Vuex.Store({
       commit("addCardToDeck", { deck: deck, card: card });
     },
 
+    addCardsToDeck({ commit }, { deck, cards }) {
+      commit("addCardsToDeck", { deck, cards });
+    },
+
     updateCard({ commit }, { deck, card }) {
       commit("updateCard", { deck: deck, card: card });
     },
 
     // run the given function over all cards
     // the function should mutate the given card. we will save it back.
-    batchUpdateCards({ commit }, { deck, modifierFunction, predicateFunction = _.identity }) {
+    batchUpdateCards(
+      { commit },
+      { deck, modifierFunction, predicateFunction = _.identity }
+    ) {
       commit("batchUpdateCards", { deck, modifierFunction, predicateFunction });
     },
 

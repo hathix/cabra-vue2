@@ -2,6 +2,7 @@
   <div>
     <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
+    <router-link to="batchadd" tag="md-button" append>Batch Add Cards</router-link>
     <router-link to="study" tag="md-button" append :disabled="deckEmpty">Study</router-link>
     <router-link to="cards" tag="md-button" append :disabled="deckEmpty">View cards</router-link>
 
@@ -68,7 +69,7 @@ export default {
     },
 
     deckEmpty() {
-      return this.deck.cards.length === 0
+      return this.deck.cards.length === 0;
     }
   },
   methods: {
