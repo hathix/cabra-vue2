@@ -33,15 +33,14 @@ export class StudySession {
 
   // returns true if the session is done.
   sessionOver() {
-    return this.currentCardIndex >= this.cards.length
+    return this.currentCardIndex >= this.cards.length;
   }
 
   // returns the current card to be studied, or null if the session is done
   getCurrentCard() {
     if (this.sessionOver()) {
       return null;
-    }
-    else {
+    } else {
       return this.cards[this.currentCardIndex];
     }
   }
@@ -91,4 +90,4 @@ export const CARD_STUDY_RESULTS = {
   KNEW,
   SORT_OF,
   DIDNT_KNOW
-}
+};
