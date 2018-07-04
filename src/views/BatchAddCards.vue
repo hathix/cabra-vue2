@@ -118,7 +118,6 @@ export default {
         deck: this.deck,
         cards: newCards
       });
-
     }
     // createBlankCard() {
     //   this.card = factory.createCard({ question: null, answer: null });
