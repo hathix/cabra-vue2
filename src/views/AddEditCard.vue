@@ -20,7 +20,7 @@
 
   <!-- TODO alter the snackbar if they edited a card instead of creating one.
   but if we automatically go back after editing, the snackbar will be hidden -->
-  <md-snackbar :md-position="center" :md-duration="snackbarDuration" :md-active.sync="showSnackbar" md-persistent>
+  <md-snackbar md-position="center" :md-duration="snackbarDuration" :md-active.sync="showSnackbar" md-persistent>
     <span>Card successfully created!</span>
     <md-button class="md-primary" @click="showSnackbar = false">Close</md-button>
   </md-snackbar>

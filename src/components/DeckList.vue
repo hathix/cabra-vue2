@@ -3,17 +3,7 @@
 <template>
   <div>
 
-    <!-- deck name changer
-      TODO factor this out into its own component?
-    -->
-    <md-dialog-prompt
-      :md-active.sync="renamerOpen"
-      v-model="activeDeck && activeDeck.name || null"
-      md-title="Deck Name"
-      md-confirm-text="Change"
-      md-cancel-text="Cancel"
-      @md-confirm="renameDeck"
-       />
+
 
        <!-- you can't make clickable cards so these won't work for navigation -->
 <!--
@@ -75,19 +65,19 @@ export default {
   },
 
   methods: {
-    openDeckRenamer(deck) {
-      this.activeDeck = deck;
-      this.renamerOpen = true;
-    },
-
-    renameDeck(newDeckName) {
-      // the deck's name doesn't auto-update b/c binding stuff
-      // so we must manually update it
-      this.$store.dispatch("renameDeck", {
-        deck: this.activeDeck,
-        name: newDeckName
-      });
-    }
+    // openDeckRenamer(deck) {
+    //   this.activeDeck = deck;
+    //   this.renamerOpen = true;
+    // },
+    //
+    // renameDeck(newDeckName) {
+    //   // the deck's name doesn't auto-update b/c binding stuff
+    //   // so we must manually update it
+    //   this.$store.dispatch("renameDeck", {
+    //     deck: this.activeDeck,
+    //     name: newDeckName
+    //   });
+    // }
   },
 
   // props: {

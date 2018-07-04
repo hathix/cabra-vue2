@@ -3,7 +3,22 @@
     <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
     <router-link to="cards" tag="md-button" append>View cards</router-link>
+
+    <md-button @click="renamerOpen = true">Rename deck</md-button>
   </p>
+
+
+  <!-- deck name changer
+    TODO factor this out into its own component?
+  -->
+    <md-dialog-prompt
+      :md-active.sync="renamerOpen"
+      md-title="Rename Deck"
+      md-input-placeholder="New Deck Name"
+      md-confirm-text="Rename"
+      md-cancel-text="Cancel"
+      @md-confirm="renameDeck"
+       />
   </div>
 </template>
 
@@ -26,11 +41,18 @@ export default {
   // component very fragile. see:
   // https://router.vuejs.org/guide/essentials/passing-props.html#boolean-mode
 
+  data: function() {
+    return {
+      // for the renamer dialog
+      renamerOpen: false,
+    }
+  },
+
   computed: {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return this.deck.name;
-    }
+    },
   },
   methods: {
     // addCard() {
@@ -40,6 +62,17 @@ export default {
     //     card: factory.createCard({ question: "3+5", answer: "8" })
     //   });
     // }
+
+    renameDeck(newName) {
+      if (newName) {
+        // we must manually run the storage update b/c the store is immutable
+        console.log("new deck name", newName);
+        this.$store.dispatch("renameDeck", {
+          deck: this.deck,
+          name: newName
+        });
+      }
+    }
   },
 
   mixins: [Page, Deck]
