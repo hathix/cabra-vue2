@@ -98,7 +98,7 @@ export default new Vuex.Store({
       commit("renameDeck", { deck: deck, name: name });
     },
 
-    addCardToDeck({ commit, state }, { deck, card }) {
+    addCardToDeck({ commit }, { deck, card }) {
       // add card to it
       commit("addCardToDeck", { deck: deck, card: card });
     },

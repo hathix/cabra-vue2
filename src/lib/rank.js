@@ -23,15 +23,15 @@ export let getRankByName = name => {
 // for 'leveling up' a card.
 export let nextRank = rank => {
   switch (rank) {
-    case Rank.E:
-      return Rank.D;
-    case Rank.D:
-      return Rank.C;
-    case Rank.C:
-      return Rank.B;
-    case Rank.B:
-      return Rank.A;
-    case Rank.A:
-      return Rank.A;
+    case RANKS.E:
+      return RANKS.D;
+    case RANKS.D:
+      return RANKS.C;
+    case RANKS.C:
+      return RANKS.B;
+    case RANKS.B:
+      return RANKS.A;
+    case RANKS.A:
+      return RANKS.A;
   }
 };

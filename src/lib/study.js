@@ -2,6 +2,11 @@
   Utilities for managing studying.
 */
 
+import _ from "lodash";
+import { Enum } from "enumify";
+
+import * as Rank from "@/lib/rank";
+
 /**
   A study session. It will show you each card to be studied in turn.
   A new object should be created with each session.
@@ -54,24 +59,26 @@ export class StudySession {
     // so we must dynamically calculate some stuff
     let currentCardRank = Rank.getRankByName(currentCard.rankName);
 
+    let newRank = null;
+
     switch (result) {
       case CARD_STUDY_RESULTS.SKIPPED:
         // card was not studied at all. no big deal.
         break;
       case CARD_STUDY_RESULTS.KNEW:
         // you knew this card! promote it to the next rank.
-        let newRank = Rank.nextRank(currentCardRank);
-        card.rankName = newRank.name;
-        card.repsLeft = newRank.baseRepsLeft;
+        newRank = Rank.nextRank(currentCardRank);
+        currentCard.rankName = newRank.name;
+        currentCard.repsLeft = newRank.baseRepsLeft;
         break;
       case CARD_STUDY_RESULTS.SORT_OF:
         // dont change the rank at all
         break;
       case CARD_STUDY_RESULTS.DIDNT_KNOW:
         // set the card back to the base rank b/c you didn't know it :(
-        let newRank = Rank.BASE_RANK;
-        card.rankName = newRank.name;
-        card.repsLeft = newRank.baseRepsLeft;
+        newRank = Rank.BASE_RANK;
+        currentCard.rankName = newRank.name;
+        currentCard.repsLeft = newRank.baseRepsLeft;
         break;
     }
 
@@ -82,12 +89,15 @@ export class StudySession {
     this.currentCardIndex++;
     return this.getCurrentCard();
   }
+
+  // commits the changes made to the cards back to the deck
+  finish() {
+    console.log("FINISH TODO");
+  }
 }
 
 // utils
-export const CARD_STUDY_RESULTS = {
-  SKIPPED,
-  KNEW,
-  SORT_OF,
-  DIDNT_KNOW
-};
+
+// study results. uses enumify.
+export class CARD_STUDY_RESULTS extends Enum {}
+CARD_STUDY_RESULTS.initEnum(["SKIPPED", "KNEW", "SORT_OF", "DIDNT_KNOW"]);
