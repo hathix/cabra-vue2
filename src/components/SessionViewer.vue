@@ -3,7 +3,7 @@
 <template>
   <div>
 
-    <md-card>
+    <md-card v-if="!finished">
       <md-card-area>
         <!-- <md-card-header>
           <h2 class="md-title">Coffee House</h2>
@@ -25,14 +25,34 @@
 
       <md-card-actions md-alignment="left">
         <md-button v-if="!backShown" @click="backShown = true">Show {{ backPrompt }}</md-button>
+
+
+        <md-button v-if="backShown" class="md-primary" @click="studyResult(STUDY_RESULTS.KNEW)">
+          <md-icon>check</md-icon>
+          I knew it
+        </md-button>
+        <md-button v-if="backShown" @click="studyResult(STUDY_RESULTS.SORT_OF)">
+          <md-icon>remove</md-icon>
+          Sort of knew it
+        </md-button>
+        <md-button v-if="backShown" class="md-accent" @click="studyResult(STUDY_RESULTS.DIDNT_KNOW)">
+          <md-icon>clear</md-icon>
+          Didn't know it
+        </md-button>
       </md-card-actions>
     </md-card>
 
+    <div v-if="finished">
+      done!
+    </div>
 
   </div>
 </template>
 
 <script>
+
+import { CARD_STUDY_RESULTS } from "@/lib/study";
+
 export default {
   name: "SessionViewer",
 
@@ -41,7 +61,14 @@ export default {
   data: function() {
     return {
       // toggles between true and false when the back of the card is being shown
-      backShown: false
+      backShown: false,
+
+      // for the HTML to call
+      STUDY_RESULTS: CARD_STUDY_RESULTS,
+
+      // if the session is over, show some summary stats
+      // TODO extract into its own component
+      finished: false
     };
   },
 
@@ -59,6 +86,11 @@ export default {
     //     name: newDeckName
     //   });
     // }
+    studyResult(result) {
+      // result is from the CARD_STUDY_RESULTS enum
+      console.log("RESULT", result),
+      this.finished = this.session.cardStudied(result);
+    }
   },
 
   // props: {
@@ -97,4 +129,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  // @import "~vue-material/theme/engine";
+  //
+  // @include md-register-theme("green-button", (
+  //   primary: md-get-palette-color(green, 500)
+  // ));
+  //
+  // @include md-register-theme("black-card", (
+  //   primary: md-get-palette-color(black, 500)
+  // ));
+  //
+  // @include md-register-theme("purple-card", (
+  //   primary: md-get-palette-color(purple, 500)
+  // ));
+  //
+  // @include md-register-theme("orange-card", (
+  //   primary: md-get-palette-color(orange, 500)
+  // ));
 </style>

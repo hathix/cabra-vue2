@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <SessionViewer v-if="session" :session="session" :deck="deck"></SessionViewer>
-    <div v-else>
-      <div class="md-layout md-gutter">
-        <div class="md-layout-item">
-          <md-field>
-            <label for="order">Order</label>
-            <md-select v-model="settings.order" name="order" id="order">
-              <md-option value="question_first">Normal: see question, give answer</md-option>
-              <md-option value="answer_first">Jeopardy: see answer, give question</md-option>
-              <md-option value="random">Random</md-option>
-            </md-select>
-          </md-field>
-        </div>
+<div>
+  <SessionViewer v-if="session" :session="session" :deck="deck"></SessionViewer>
+  <div v-else>
+    <div class="md-layout md-gutter">
+      <div class="md-layout-item">
+        <md-field>
+          <label for="order">Order</label>
+          <md-select v-model="settings.order" name="order" id="order">
+            <md-option value="question_first">Normal: see question, give answer</md-option>
+            <md-option value="answer_first">Jeopardy: see answer, give question</md-option>
+            <md-option value="random">Random</md-option>
+          </md-select>
+        </md-field>
       </div>
-
-      <!-- for session setup -->
-      <md-button @click="startSession">Start studying</md-button>
     </div>
+
+    <!-- for session setup -->
+    <md-button @click="startSession">Start studying</md-button>
   </div>
+</div>
 </template>
 
 <script>
@@ -32,7 +32,9 @@ import SessionViewer from "@/components/SessionViewer.vue";
 import Page from "@/mixins/Page";
 import Deck from "@/mixins/Deck";
 
-import { StudySession /* , CARD_STUDY_RESULTS */ } from "@/lib/study";
+import {
+  StudySession /* , CARD_STUDY_RESULTS */
+} from "@/lib/study";
 
 export default {
   name: "studypage",
@@ -59,12 +61,18 @@ export default {
   methods: {
     startSession() {
       // TODO: pass options
-      this.session = new StudySession({ deck: this.deck, ...this.settings });
+      this.session = new StudySession({
+        deck: this.deck,
+        store: this.$store,
+        ...this.settings
+      });
       console.log("Made session");
     }
   },
 
-  components: { SessionViewer }
+  components: {
+    SessionViewer
+  }
 };
 </script>
 

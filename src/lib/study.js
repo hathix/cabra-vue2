@@ -12,10 +12,11 @@ import * as Rank from "@/lib/rank";
   A new object should be created with each session.
 */
 export class StudySession {
-  constructor({ deck, order }) {
+  constructor({ deck, store, order }) {
     // TODO accept other parameters
 
     this.deck = deck;
+    this.store = store;
 
     // order in which to show cards: question or answer first
     this.order = order;
@@ -30,27 +31,29 @@ export class StudySession {
 
     // this will be a 1-to-1 mapping of card => study result (see enum in this file)
     this.studyResults = [];
+
+    // whether or not this is done
+    this.finished = false;
   }
 
   determineCardsToStudy() {
     // decides which cards out of the deck to study
 
+    // by default, we study all cards where there are 0 reps left.
+    // but if nothing has 0 reps left, then let the minimum be M.
+    // we must subtract M from the repsLeft of each card
+    // TODO finish
+
     // for now, we will just show all the cards where there are 0 reps left
     return _.filter(this.deck.cards, card => card.repsLeft === 0);
+
+    // TODO commit a change
   }
 
-  // returns true if the session is done.
-  sessionOver() {
-    return this.currentCardIndex >= this.cards.length;
-  }
 
-  // returns the current card to be studied, or null if the session is done
+  // returns the current card to be studied
   getCurrentCard() {
-    if (this.sessionOver()) {
-      return null;
-    } else {
-      return this.cards[this.currentCardIndex];
-    }
+    return this.cards[this.currentCardIndex];
   }
 
   cardStudied(result) {
@@ -60,6 +63,7 @@ export class StudySession {
     // cards only store their rank name, not the actual rank (b/c you can only
     // store pure objects in Vue). TODO think of a way to fix this.
     // so we must dynamically calculate some stuff
+    console.log(currentCard.rankName);
     let currentCardRank = Rank.RANKS.enumValueOf(currentCard.rankName);
 
     let newRank = null;
@@ -70,7 +74,11 @@ export class StudySession {
         break;
       case CARD_STUDY_RESULTS.KNEW:
         // you knew this card! promote it to the next rank.
-        newRank = currentCardRank.nextRank();
+        newRank = currentCardRank.nextRank;
+        // TODO make this a store action so that the in-memory object +
+        // stored object are the same. that is, forbid anyone from
+        // manually changing a card prop. the ONLY way to do so should be to
+        // update the store.
         currentCard.rankName = newRank.name;
         currentCard.repsLeft = newRank.baseRepsLeft;
         break;
@@ -88,14 +96,25 @@ export class StudySession {
     // update the results array for statistics keeping
     this.studyResults[this.currentCardIndex] = result;
 
-    // advance to the next card and return it
-    this.currentCardIndex++;
-    return this.getCurrentCard();
-  }
+    // update the card in the deck as soon as it is studied
+    // the only change is the rank
+    console.log("updating card....")
+    this.store.dispatch("updateCard", {
+      deck: this.deck,
+      card: currentCard
+    });
 
-  // commits the changes made to the cards back to the deck
-  finish() {
-    console.log("FINISH TODO");
+    // if this is not the last card, advance to the next card
+    if (this.currentCardIndex < this.cards.length - 1) {
+      this.currentCardIndex++;
+    }
+    // otherwise stay here but mark as finished
+    else {
+      // this.finish();
+      this.finished = true;
+    }
+
+    return this.finished;
   }
 }
 
