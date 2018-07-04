@@ -54,7 +54,6 @@ export default {
       // divider between question and answer
       // delimiter: ","
 
-
       // card: null,
       // editing: this.cardId ? true : false, // true if a cardId was passed
       //
@@ -132,8 +131,7 @@ export default {
       if (invalidRows.length > 0) {
         let remainingText = CSV.stringify(invalidRows);
         this.inputText = remainingText;
-      }
-      else {
+      } else {
         // everything is perfect!
         this.inputText = null;
       }
