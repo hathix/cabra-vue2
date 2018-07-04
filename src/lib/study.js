@@ -12,10 +12,13 @@ import * as Rank from "@/lib/rank";
   A new object should be created with each session.
 */
 export class StudySession {
-  constructor({ deck }) {
+  constructor({ deck, order }) {
     // TODO accept other parameters
 
     this.deck = deck;
+
+    // order in which to show cards: question or answer first 
+    this.order = order;
 
     // decide which cards to study
     this.cards = this.determineCardsToStudy();
