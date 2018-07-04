@@ -2,8 +2,8 @@
   <div>
     <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
-    <router-link to="study" tag="md-button" append>Study</router-link>
-    <router-link to="cards" tag="md-button" append>View cards</router-link>
+    <router-link to="study" tag="md-button" append :disabled="deckEmpty">Study</router-link>
+    <router-link to="cards" tag="md-button" append :disabled="deckEmpty">View cards</router-link>
 
     <md-button @click="renamerOpen = true">Rename deck</md-button>
     <md-button @click="deleterOpen = true">Delete deck</md-button>
@@ -65,6 +65,10 @@ export default {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return this.deck.name;
+    },
+
+    deckEmpty() {
+      return this.deck.cards.length === 0
     }
   },
   methods: {
