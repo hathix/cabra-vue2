@@ -3,16 +3,16 @@
   <form novalidate class="md-layout" @submit="finishCard">
     <md-field>
       <label>Question</label>
-      <md-textarea v-model="card.question"></md-textarea>
+      <md-textarea v-model="card.question" md-autogrow></md-textarea>
       <!-- <span class="md-helper-text">Helper text</span> -->
     </md-field>
     <md-field>
       <label>Answer</label>
-      <md-textarea v-model="card.answer"></md-textarea>
+      <md-textarea v-model="card.answer" md-autogrow></md-textarea>
       <!-- <span class="md-helper-text">Helper text</span> -->
     </md-field>
 
-    <md-button type="submit" class="md-primary">
+    <md-button type="submit" class="md-primary" :disabled="!card.question || !card.answer">
       <span v-if="editing">Finish editing</span>
       <span v-else>Create card</span>
     </md-button>

@@ -2,8 +2,8 @@
 <div>
   <form novalidate class="md-layout" @submit="submitForm">
     <md-field>
-      <label>Input</label>
-      <md-textarea v-model="inputText"></md-textarea>
+      <label>Enter each card on its own line, with a comma between question and answer</label>
+      <md-textarea v-model="inputText" md-autogrow></md-textarea>
     </md-field>
 
     <md-button type="submit" class="md-primary" :disabled="!inputText">
