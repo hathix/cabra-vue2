@@ -61,7 +61,7 @@ export default {
       // for the deck renaming modal
       renamerOpen: false,
       activeDeck: null
-    }
+    };
   },
 
   methods: {

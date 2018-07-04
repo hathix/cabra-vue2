@@ -52,7 +52,7 @@ export default {
       editing: this.cardId ? true : false, // true if a cardId was passed
 
       showSnackbar: false,
-      snackbarDuration: 3000, // milliseconds
+      snackbarDuration: 3000 // milliseconds
     };
   },
 

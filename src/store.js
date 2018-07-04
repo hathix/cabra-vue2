@@ -62,10 +62,10 @@ export default new Vuex.Store({
     },
 
     deleteCard(state, { deck, card }) {
-        deck.cards = _.filter(deck.cards, elem => {
-          // only keep stuff whose id != card's id
-          return elem.id !== card.id;
-        });
+      deck.cards = _.filter(deck.cards, elem => {
+        // only keep stuff whose id != card's id
+        return elem.id !== card.id;
+      });
     },
 
     clearAllData(state) {

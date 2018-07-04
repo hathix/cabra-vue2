@@ -44,15 +44,15 @@ export default {
   data: function() {
     return {
       // for the renamer dialog
-      renamerOpen: false,
-    }
+      renamerOpen: false
+    };
   },
 
   computed: {
     pageName() {
       // computes the page's name, which will be shown on the app's TopBar
       return this.deck.name;
-    },
+    }
   },
   methods: {
     // addCard() {
