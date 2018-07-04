@@ -37,6 +37,14 @@ export default new Vuex.Store({
       state.decks.push(deck);
     },
 
+    deleteDeck(state, deck) {
+      // need to loop through all decks and remove the one that has been passed
+      state.decks = _.filter(state.decks, elem => {
+        // keep anything whose id doesn't match the guilty deck
+        return elem.id !== deck.id;
+      });
+    },
+
     renameDeck(state, { deck, name }) {
       deck.name = name;
     },
@@ -74,8 +82,13 @@ export default new Vuex.Store({
   },
   actions: {
     // higher-level function to add a deck, called from the outside
+    // TODO standardize whether the param is always an object or what
     addDeck({ commit /*, state */ }, deck) {
       commit("addDeck", deck);
+    },
+
+    deleteDeck({ commit }, { deck }) {
+      commit("deleteDeck", deck);
     },
 
     renameDeck({ commit }, { deck, name }) {

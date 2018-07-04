@@ -5,6 +5,7 @@
     <router-link to="cards" tag="md-button" append>View cards</router-link>
 
     <md-button @click="renamerOpen = true">Rename deck</md-button>
+    <md-button @click="deleterOpen = true">Delete deck</md-button>
   </p>
 
 
@@ -19,6 +20,15 @@
       md-cancel-text="Cancel"
       @md-confirm="renameDeck"
        />
+
+    <!-- Deletion confirmation dialog -->
+       <md-dialog-confirm
+        :md-active.sync="deleterOpen"
+        md-title="Delete this deck?"
+        md-content="This deck will be permanently deleted. OK?"
+        md-confirm-text="Delete"
+        md-cancel-text="Cancel"
+        @md-confirm="deleteDeck" />
   </div>
 </template>
 
@@ -44,7 +54,9 @@ export default {
   data: function() {
     return {
       // for the renamer dialog
-      renamerOpen: false
+      renamerOpen: false,
+      // for the deleter dialog
+      deleterOpen: false
     };
   },
 
@@ -72,6 +84,17 @@ export default {
           name: newName
         });
       }
+    },
+
+    deleteDeck() {
+      console.log("Deleting deck", this.deck.name);
+
+      // go back before the deed is done
+      this.$router.go(-1);
+
+      this.$store.dispatch("deleteDeck", {
+        deck: this.deck
+      });
     }
   },
 
