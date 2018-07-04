@@ -16,6 +16,9 @@
         <div class="md-layout-item md-small-size-50 md-xsmall-size-100">{{ card.question }}</div>
         <div class="md-layout-item md-small-size-50 md-xsmall-size-100">{{ card.answer }}</div>
       </div>
+
+      {{ card.repsLeft }}
+      {{ card.rankName }}
     </md-card-content>
 
     <md-card-actions>

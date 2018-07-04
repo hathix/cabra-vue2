@@ -42,12 +42,17 @@ export class StudySession {
     // by default, we study all cards where there are 0 reps left.
     // but if nothing has 0 reps left, then let the minimum be M.
     // we must subtract M from the repsLeft of each card
-    // TODO finish
+    let minRepsOfCards = _.minBy(this.deck.cards, card => card.repsLeft).repsLeft;
 
-    // for now, we will just show all the cards where there are 0 reps left
+    console.log(`deducting ${minRepsOfCards} from all`);
+    // if nonzero, we need to reduce the repsleft of all cards by this amount
+    this.store.dispatch("updateAllCards", {
+      deck: this.deck,
+      cardFunction: (card) => card.repsLeft -= minRepsOfCards
+    });
+
+    // now return everything with zero reps
     return _.filter(this.deck.cards, card => card.repsLeft === 0);
-
-    // TODO commit a change
   }
 
 

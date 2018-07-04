@@ -72,6 +72,11 @@ export default new Vuex.Store({
       // deck.cards.push(card);
     },
 
+    updateAllCards(state, { deck, cardFunction }) {
+      // we simply need to map the cardFunction over all cards in the deck
+      _.map(deck.cards, elem => cardFunction(elem));
+    },
+
     deleteCard(state, { deck, card }) {
       deck.cards = _.filter(deck.cards, elem => {
         // only keep stuff whose id != card's id
@@ -105,6 +110,12 @@ export default new Vuex.Store({
 
     updateCard({ commit }, { deck, card }) {
       commit("updateCard", { deck: deck, card: card });
+    },
+
+    // run the given function over all cards
+    // the function should mutate the given card. we will save it back.
+    updateAllCards({ commit }, { deck, cardFunction }) {
+      commit("updateAllCards", { deck, cardFunction });
     },
 
     deleteCard({ commit }, { deck, card }) {

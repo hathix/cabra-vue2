@@ -13,7 +13,7 @@ export default {
       // given the id from the URL, decide which deck we are referring to
 
       // get deck from list of decks
-      console.log("Deck id is " + this.id);
+      // console.log("Deck id is " + this.id);
       let deckId = this.id;
       // TODO search in list of decks for this
       let allDecks = this.$store.state.decks;
