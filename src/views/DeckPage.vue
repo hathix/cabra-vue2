@@ -95,6 +95,8 @@ export default {
       this.$store.dispatch("deleteDeck", {
         deck: this.deck
       });
+
+      // TODO show snackbar when deck has been deleted
     }
   },
 
