@@ -23,7 +23,7 @@
 
     <md-card-actions>
       <router-link class="md-icon-button" tag="md-button" :to="card.id" append>
-        <md-icon>create</md-icon>
+        <md-icon>edit</md-icon>
       </router-link>
       <md-button class="md-icon-button" @click="deleteCard(card.id)">
         <md-icon>delete</md-icon>

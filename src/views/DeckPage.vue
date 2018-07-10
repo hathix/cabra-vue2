@@ -1,6 +1,35 @@
 <template>
   <div>
-    <p>
+
+    <md-list>
+      <router-link to="add" tag="md-list-item" append>
+        <md-icon>add</md-icon>
+        <span class="md-list-item-text">Add card</span>
+      </router-link>
+      <router-link to="batchadd" tag="md-list-item" append>
+        <md-icon>playlist_add</md-icon>
+        <span class="md-list-item-text">Batch add cards</span>
+      </router-link>
+      <router-link to="study" tag="md-list-item" append :disabled="deckEmpty">
+        <md-icon>school</md-icon>
+        <span class="md-list-item-text">Study</span>
+      </router-link>
+      <router-link to="cards" tag="md-list-item" append :disabled="deckEmpty">
+        <md-icon>chrome_reader_mode</md-icon>
+        <span class="md-list-item-text">View cards</span>
+      </router-link>
+
+      <md-list-item @click="renamerOpen = true">
+        <md-icon>edit</md-icon>
+        <span class="md-list-item-text">Rename deck</span>
+      </md-list-item>
+      <md-list-item @click="deleterOpen = true">
+        <md-icon>delete</md-icon>
+        <span class="md-list-item-text">Delete deck</span>
+      </md-list-item>
+    </md-list>
+
+    <!-- <p>
     <router-link to="add" tag="md-button" append>Add card</router-link>
     <router-link to="batchadd" tag="md-button" append>Batch Add Cards</router-link>
     <router-link to="study" tag="md-button" append :disabled="deckEmpty">Study</router-link>
@@ -8,7 +37,7 @@
 
     <md-button @click="renamerOpen = true">Rename deck</md-button>
     <md-button @click="deleterOpen = true">Delete deck</md-button>
-  </p>
+  </p> -->
 
 
   <!-- deck name changer

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <md-tabs md-alignment="centered">
+  <md-tabs md-alignment="fixed">
     <!-- <md-tab id="tab-home" md-icon="home"></md-tab> -->
     <md-tab id="tab-pages" md-label="Create New" md-icon="create">
 
